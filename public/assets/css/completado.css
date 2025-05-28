@@ -1,0 +1,50 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.transaction-details {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-details h4 {
+    margin-bottom: 20px;
+}
+
+.transaction-details .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.transaction-details .detail-item span {
+    font-weight: bold;
+}
+
+.transaction-details .detail-item .value {
+    font-weight: normal;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Esto alinea verticalmente el texto y la imagen */
+}
+
+.container h4 {
+    margin: 0;
+    /* Elimina el margen predeterminado si lo tiene */
+}
+
+.container img {
+    max-width: 100px;
+    /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
+}

@@ -1,0 +1,414 @@
+.card-image {
+    width: 188px;
+    height: 176px;
+}
+
+.imagen-pequena {
+    cursor: pointer;
+    width: 100%;
+    height: 250px;
+    /* object-fit: cover; */
+    /* Cambia el cursor al pasar sobre la imagen */
+}
+
+.imagen-grande {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-grande img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* estilo de iconos con texto */
+.card__icons__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* iconos con texto */
+.card__icons__container article p {
+    margin-bottom: .35rem;
+    font-weight: 500;
+    font-size: .7rem;
+    color: #393939;
+}
+
+/* info de iconos */
+.card__icons__container article span {
+    color: #514a4a;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+
+/* Fecha de Inicio */
+.date__start__content {
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    /* padding: .2rem; */
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #727272;
+    font-weight: 500;
+    font-size: 0.87rem;
+}
+
+/* Imagen del Curso */
+.imagen__curso__content {
+    width: 100%;
+}
+
+.imagen__curso__content>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card__button {
+    background-color: #fff;
+    transition: box-shadow .2s;
+    border: 1px solid #ff6f02 !important;
+}
+
+
+.card__button:hover {
+    color: #ff6f02;
+    box-shadow: 0px 0px 10px 0px rgba(255, 111, 2, 0.5);
+    /* Agregué un sombreado con el color ff6f02 en RGB cuando el cursor está encima */
+}
+
+.btn-outline-person {
+    color: #0C244B;
+    border-color: #0C244B;
+}
+
+.btn-outline-person:hover {
+    color: #fff;
+    background-color: #0C244B;
+    border-color: #0C244B;
+}
+
+.btn-outline-person:focus,
+.btn-outline-person.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-person.disabled,
+.btn-outline-person:disabled {
+    color: #0C244B;
+    background-color: transparent;
+}
+
+.btn-outline-person:not(:disabled):not(.disabled):active,
+.btn-outline-person:not(:disabled):not(.disabled).active,
+.show>.btn-outline-person.dropdown-toggle {
+    color: #fff;
+    background-color: #0C244B;
+    border-color: #0C244B;
+}
+
+.btn-outline-person:not(:disabled):not(.disabled):active:focus,
+.btn-outline-person:not(:disabled):not(.disabled).active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-inscribirse {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-inscribirse::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) rotate(45deg);
+    opacity: 0;
+}
+
+.btn-inscribirse:hover::before {
+    width: 150%;
+    height: 150%;
+    opacity: 1;
+}
+
+.btn-inscribirse:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.btn-inscribirse:focus {
+    outline: none;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.btn-inscribirse:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+
+
+.container .radio {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    /* Asegura que ocupe todo el ancho */
+}
+
+.container label {
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.375em;
+    flex: 1;
+    /* Hace que cada label ocupe el mismo espacio */
+    justify-content: center;
+    /* Centra el contenido horizontalmente */
+    align-items: center;
+    /* Centra el contenido verticalmente */
+    text-align: center;
+    /* Centra el texto */
+}
+
+.container label input {
+    position: absolute;
+    left: -9999px;
+}
+
+.container label input:checked+span {
+    background-color: #0C244B;
+    color: white;
+}
+
+.container label input:checked+span:before {
+    box-shadow: inset 0 0 0 0.4375em #09203A;
+}
+
+.container label span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Asegura que el span ocupe todo el ancho */
+    padding: 0.375em 0.75em;
+    border-radius: 99em;
+    transition: 0.25s ease;
+    color: #0C244B;
+}
+
+.container label span:hover {
+    background-color: #d6d6e5;
+}
+
+.container label span:before {
+    display: flex;
+    flex-shrink: 0;
+    content: "";
+    background-color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em #ff416c;
+}
+
+
+.modalContainer .radio {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modalContainer label {
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.375em;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Centra el texto */
+}
+
+.modalContainer label input {
+    position: absolute;
+    left: -9999px;
+}
+
+.modalContainer label input:checked+span {
+    background-color: #0C244B;
+    /* Color de fondo al estar seleccionado */
+    color: white;
+}
+
+
+.modalContainer label input:checked+span:before {
+    box-shadow: inset 0 0 0 0.4375em #09203A
+}
+
+.modalContainer label span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.375em 0.75em;
+    border-radius: 99em;
+    transition: 0.25s ease;
+    color: #0C244B;
+}
+
+.modalContainer label span:hover {
+    background-color: #d6d6e5;
+}
+
+.modalContainer label span:before {
+    display: flex;
+    flex-shrink: 0;
+    content: "";
+    background-color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em #ff416c;
+}
+
+@media only screen and (max-width: 768px) {
+    .modalContainer label {
+        justify-content: flex-end;
+        /* Alinea los elementos a la derecha */
+    }
+
+    .modalContainer label span {
+        justify-content: flex-start;
+        /* Alinea el texto a la izquierda para dar espacio al botón de radio */
+    }
+
+    .modalContainer label span:before {
+        margin-right: 0.375em;
+        /* Elimina el margen derecho del círculo */
+        margin-left: 0;
+        /* Agrega un margen izquierdo al círculo */
+    }
+}
+
+
+
+.modal-lg {
+    max-width: 900px;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.rounded-circle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.sucursal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .sucursal-img {
+    transform: scale(1.1);
+}
+
+.img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .img-overlay {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.list-unstyled li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list-unstyled li:last-child {
+    border-bottom: none;
+}
+
+.text-home{
+    color: #0C244B !important;
+}
+.bg-home{
+    background-color: #0C244B !important;
+}

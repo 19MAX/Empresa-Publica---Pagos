@@ -1,0 +1,78 @@
+.table th,
+.table td {
+    vertical-align: middle;
+}
+/* Estilos generales para la tabla */
+.datatable {
+    width: 100% !important;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.datatable thead th {
+    background-color: #f8f9fa; /* Color de fondo de la cabecera */
+    color: #212529; /* Color de texto de la cabecera */
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.datatable tbody td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    white-space: nowrap; /* Evita que el texto haga un salto de línea */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade '...' al final del contenido que no cabe */
+    max-width: 200px; /* Establece un ancho máximo para las celdas */
+    position: relative; /* Necesario para el efecto hover */
+}
+
+.datatable tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Fila impar */
+}
+
+.datatable tbody tr:hover {
+    background-color: #e9ecef; /* Efecto hover */
+}
+
+.datatable tbody td:hover {
+    overflow: visible;
+    white-space: normal; /* Permite que el texto haga salto de línea */
+    background-color: #e9ecef; /* Mantén el color de fondo en hover */
+}
+
+.datatable .dt-column-title {
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Estilos de ordenamiento de columnas */
+.datatable th[aria-sort="ascending"]::after {
+    /* content: " ▲"; */
+    font-size: 0.7em;
+    color: #6c757d;
+}
+
+.datatable th[aria-sort="descending"]::after {
+    /* content: " ▼"; */
+    font-size: 0.7em;
+    color: #6c757d;
+}
+
+.dt-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dt-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dt-search {
+    order: 0;
+    padding-top: 12px;
+}

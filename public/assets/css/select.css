@@ -1,0 +1,17 @@
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #0C244B;
+    border: 1px solid #006fe6;
+    color: #ffffff;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #ffffff;
+    margin-right: 5px;
+    padding-right: 5px;
+    border-right: 1px solid #ffffff;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: #ffcccc;
+    background-color: red;
+}
