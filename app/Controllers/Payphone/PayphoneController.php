@@ -237,7 +237,8 @@ class PayphoneController extends BaseController
                 'last_digits' => $result['data']['lastDigits'],
             ];
             $data['numAutorizacion'] = $payment['num_autorizacion'];
-
+var_dump($payment);
+exit;
             return view('client/completado', $payment);
         } else {
             return view('client/errors/error_payphone');
