@@ -63,7 +63,7 @@
 
 <body>
     <header>
-        <div class="title">SOFTEC MICROSYSTEMS</div>
+        <div class="title">EVENTO PAGOS</div>
         <div class="title">COMPROBANTE DE RECAUDACIÓN</div>
         <div>7 de Mayo y Olmedo</div>
         <div>RUC: 0201975844001</div>
