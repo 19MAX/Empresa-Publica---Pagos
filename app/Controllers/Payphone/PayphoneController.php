@@ -236,7 +236,7 @@ class PayphoneController extends BaseController
                 'reference' => $result['data']['reference'],
                 'last_digits' => $result['data']['lastDigits'],
             ];
-            $data['numAutorizacion'] = $paymentId;
+            $data['numAutorizacion'] = $payment;
 
             return view('client/completado', $data);
         } else {
