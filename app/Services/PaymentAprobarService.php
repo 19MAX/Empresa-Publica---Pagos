@@ -23,6 +23,9 @@ class PaymentAprobarService
 
     public function approvePayment($paymentId, $userId, $metodoPago)
     {
+        helper('ramdom');
+        $uniqueCode = generateUniqueNumericCode(50);
+
         $payment = $this->paymentsModel->pagoData($paymentId);
         // Obtener el valor de additional_charge
         $additional_charge = $this->configModel->getAdditionalCharge();
@@ -45,16 +48,7 @@ class PaymentAprobarService
             return ['success' => false, 'message' => 'Método de pago en linea desactivado'];
         }
 
-        // CLAVE: Solo generar número si no existe uno ya
-        $uniqueCode = $payment['num_autorizacion'] ?? null;
-
-        // Si no tiene número de autorización o está vacío, generar uno nuevo
-        if (empty($uniqueCode)) {
-            helper('ramdom');
-            $uniqueCode = generateUniqueNumericCode(50);
-        }
-
-        $datosPago = $this->calculatePaymentDetails($payment['precio'], $uniqueCode, $additional_charge, $metodoPago);
+        $datosPago = $this->calculatePaymentDetails($payment['precio'], $uniqueCode,$additional_charge,$metodoPago);
 
         try {
             $this->paymentsModel->updatePaymentAndInsertInscripcionPago($paymentId, $datosPago, $userId);

@@ -236,10 +236,9 @@ class PayphoneController extends BaseController
                 'reference' => $result['data']['reference'],
                 'last_digits' => $result['data']['lastDigits'],
             ];
-            $data['numAutorizacion'] = $payment['num_autorizacion'];
-var_dump($payment);
-exit;
-            return view('client/completado', $payment);
+            $data['numAutorizacion'] = $payment;
+
+            return view('client/completado', $data);
         } else {
             return view('client/errors/error_payphone');
             // return $this->response->setJSON(['error' => 'No se pudo confirmar el pago'], 400);
