@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
             'last_name' => 'B',
             'phone_number' => '0989026071',
             'email' => 'info@softecsa.com',
-            'password' => password_hash('Softec2024Apps', PASSWORD_DEFAULT),
+            'password' => password_hash('Softec2025Apps', PASSWORD_DEFAULT),
             'address'=>'Guaranda',
             ],
             //Admin pagos
