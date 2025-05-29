@@ -132,7 +132,11 @@ class InscripcionController extends BaseController
             }
 
             // ✅ Verificar en la base de datos local
-            $usuario = $this->usuariosModel->where('ic', $cedula)->first();
+            $usuario = $this->usuariosModel
+                ->where('ic', $cedula)
+                ->where('rol_id', RolesOptions::UsuarioPublico)
+                ->first();
+
 
             if ($usuario) {
                 helper('format_names');

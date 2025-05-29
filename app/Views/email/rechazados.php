@@ -155,12 +155,12 @@
 								<td>
 									<table class="row-content stack" align="center" border="0" cellpadding="0"
 										cellspacing="0" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fff; border-left: 2px solid #0c244b; border-radius: 10px 10px 0 0; border-right: 2px solid #0c244b; border-top: 2px solid #0c244b; color: #000000; width: 650px; margin: 0 auto;"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #0c244b; border-left: 2px solid #0c244b; border-radius: 10px 10px 0 0; border-right: 2px solid #0c244b; border-top: 2px solid #0c244b; color: #fff; width: 650px; margin: 0 auto;"
 										width="650">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="25%"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; border-bottom: 2px solid #0c244b; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-left: 0px; background-color: white; border-radius: 10px 10px 0px 10px">
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; border-bottom: 2px solid #0c244b; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-left: 0px; background-color: #0c244b; border-radius: 10px 10px 0px 10px">
 													<table class="image_block block-1" width="100%" border="0"
 														cellpadding="0" cellspacing="0" role="presentation"
 														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
@@ -171,7 +171,7 @@
 																	style="line-height:10px">
 																	<div style="max-width: 152px;"><img
 																			src="<?= base_url('assets/images/email/logo-ep.png')?>"
-																			style="display: block; height: auto; border: 0; width: 100%;"
+																			style="display: block; height: auto; border: 0; max-width: 105px; width: 100%;"
 																			width="152" alt="Logo" title="Logo"
 																			height="auto"></div>
 																</div>
@@ -179,7 +179,7 @@
 														</tr>
 													</table>
 												</td>
-												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; background-color: #fff; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 2px solid #0c244b;
+												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; background-color: #0c244b; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 2px solid #0c244b;
 												border-radius: 10px 10px 10px 0 ;">
 													<table class="heading_block block-1" width="100%" cellpadding="10"
 														cellspacing="0" role="presentation"
@@ -189,7 +189,7 @@
 																<h2
 																	style="margin: 0; color: #727272; direction: ltr; font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 36px;">
 																	<span class="tinyMce-placeholder"><span
-																			style="color: #c3171b;">Notificación
+																			style="color: #fff;">Notificación
 																			Importante</span><br></span></h2>
 															</td>
 														</tr>
@@ -560,7 +560,7 @@
 															<td class="pad">
 																<div
 																	style="color:#FFFFFF;font-family:Tahoma, Verdana, Segoe, sans-serif;font-size:14px;font-weight:400;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
-																	<p style="margin: 0;">© 2024 PROSERVI-UEB-EP |
+																	<p style="margin: 0;">© 2024 EVENTO PAGOS |
 																		Softec Apps S.A.S. Todos los derechos
 																		reservados.</p>
 																</div>

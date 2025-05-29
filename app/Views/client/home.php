@@ -57,7 +57,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
             <div class="container-fluid">
                 <a class="navbar-brand ms-lg-4" href="">
-                    <h4>PROSERVI-UEB-EP</h4>
+                    <h4>EVENTO PAGOS</h4>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
         </nav>
         <div class="mb-4">
             <div class="text-center">
-                <img src="<?= base_url("assets/images/logo-ep.png"); ?>" alt="" height="100px">
+                <!-- <img src="<?= base_url("assets/images/logo-ep.png"); ?>" alt="" height="100px"> -->
             </div>
             <section class="container flex-grow-1 d-flex">
                 <div class="row flex-grow-1">
@@ -113,10 +113,10 @@
                                         <img src="<?= base_url("") . $event['image']; ?>" alt="Imagen del Curso"
                                             class="img-fluid imagen-pequena rounded-2 ">
                                     </figure>
-                                    <figure class="text-center">
+                                    <!-- <figure class="text-center">
                                         <img src="<?= base_url("assets/images/logo_ueb.png") ?>" alt="Logo del curso"
                                             class="img-fluid" width="120px;">
-                                    </figure>
+                                    </figure> -->
                                     <section class="px-2">
                                         <article class="date__start__content">
                                             <?= $event['formatted_event_date'] ?>
@@ -824,7 +824,7 @@
     <!-- Footer-->
     <footer class="bg-dark text-light py-4 mt-auto">
         <div class="container-fluid text-center">
-            <div class="small m-0 text-white p-1">Copyright 2024 &copy; PROSERVI-UEB-EP |
+            <div class="small m-0 text-white p-1">Copyright 2024 &copy; EVENTO PAGOS |
                 <a href="" class="text-decoration-none link-light">Softec Apps S.A.S</a>
             </div>
         </div>

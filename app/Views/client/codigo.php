@@ -20,13 +20,14 @@
         }
 
         .header {
-            background-color: #fff;
+            background-color: #0c244b;
+            color:white;
             border-bottom: 2px solid #0c244b;
             border-radius: 10px 10px 0 0;
         }
 
         .header h1 {
-            color: #c3171b;
+            color: #fff;
         }
 
         .content {
@@ -41,7 +42,7 @@
         }
 
         .logo {
-            max-width: 152px;
+            max-width: 105px;
         }
 
         h1 {
@@ -301,7 +302,7 @@
         </div>
 
         <div class="footer">
-            <p>© 2024 PROSERVI-UEB-EP | Softec Apps S.A.S. Todos los derechos reservados.</p>
+            <p>© 2024 EVENTO PAGOS | Softec Apps S.A.S. Todos los derechos reservados.</p>
         </div>
 
     </main>

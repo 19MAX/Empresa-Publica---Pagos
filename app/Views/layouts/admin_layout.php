@@ -53,8 +53,8 @@
         <header class="main-header">
             <!-- Logo -->
             <a href="<?= base_url("admin/dashboard") ?>" class="logo blue-bg">
-            <span class="logo-mini"><img class="img-fluid" style="width:35px; background:white; border-radius:10px;"  src="<?= base_url("assets/images/icono-sin-fondo.png") ?>" alt=""></span>
-                <span class="logo-lg"><img style="width:120px; background:white; border-radius:10px;"
+            <span class="logo-mini"><img class="img-fluid" style="width:35px; border-radius:10px;"  src="<?= base_url("assets/images/icono-sin-fondo.png") ?>" alt=""></span>
+                <span class="logo-lg"><img style="width:120px; border-radius:10px;"
                         src="<?= base_url("assets/images/logo-ep.png") ?>" alt=""></span> </a>
             <nav class="navbar blue-bg navbar-static-top">
                 <!-- Sidebar toggle button-->
