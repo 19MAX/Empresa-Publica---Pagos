@@ -303,7 +303,7 @@
         <div class="footer">
             <div>
             </div>
-            <p>© 2024 EVENTO PAGOS | Softec Apps S.A.S. Todos los derechos reservados.</p>
+            <p>© 2025 EVENTO PAGOS | Softec Apps S.A.S. Todos los derechos reservados.</p>
         </div>
 
     </main>

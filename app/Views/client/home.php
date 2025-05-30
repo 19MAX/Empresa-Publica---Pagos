@@ -825,7 +825,7 @@
     <!-- Footer-->
     <footer class="bg-dark text-light py-4 mt-auto">
         <div class="container-fluid text-center">
-            <div class="small m-0 text-white p-1">Copyright 2024 &copy; EVENTO PAGOS |
+            <div class="small m-0 text-white p-1">Copyright 2025 &copy; EVENTO PAGOS |
                 <a href="" class="text-decoration-none link-light">Softec Apps S.A.S</a>
             </div>
         </div>

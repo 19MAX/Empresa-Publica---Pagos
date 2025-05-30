@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="lockscreen-footer text-center m-t-3">
-            Copyright 2024 &copy; EVENTO PAGOS |
+            Copyright 2025 &copy; EVENTO PAGOS |
             <a href="" class="text-decoration-none link-light">Softec Apps S.A.S</a>
 
         </div>
