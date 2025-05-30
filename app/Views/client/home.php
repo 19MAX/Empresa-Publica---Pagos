@@ -57,7 +57,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
             <div class="container-fluid">
                 <a class="navbar-brand ms-lg-4" href="">
-                    <h4>EVENTO PAGOS</h4>
+                    <!-- <h4>EVENTO PAGOS</h4> -->
+                    <img loading="lazy" class="img-fluid" width="90px" src="<?=base_url("assets/images/logo-ep.png")?>" alt="Logo de eventos pagos">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,7 +111,7 @@
                             <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 p-3">
                                 <div class="bg-white shadow rounded-2">
                                     <figure class="p-1">
-                                        <img src="<?= base_url("") . $event['image']; ?>" alt="Imagen del Curso"
+                                        <img loading="lazy" src="<?= base_url("") . $event['image']; ?>" alt="Imagen del Curso"
                                             class="img-fluid imagen-pequena rounded-2 ">
                                     </figure>
                                     <!-- <figure class="text-center">
@@ -258,7 +259,7 @@
                         <div class="col-md-12">
                             <div class="card h-100 border-0 shadow">
                                 <div class="card-img-wrapper">
-                                    <img src="<?= base_url('assets/images/oficina_principal.jpeg') ?>"
+                                    <img loading="lazy" src="<?= base_url('assets/images/oficina_principal.jpeg') ?>"
                                         alt="Oficina principal" class="card-img-top sucursal-img">
                                     <div class="img-overlay">
                                         <h6 class="text-white mb-0">Softec</h6>
@@ -769,7 +770,7 @@
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" name="metodoPago" value="tarjeta">
-                                                <span>Pago con tarjeta <img
+                                                <span>Pago con tarjeta <img loading="lazy"
                                                         src="<?= base_url('assets/images/iconoPayphone.webp') ?>"
                                                         alt="PayPhone Icon"
                                                         style="width: 20px; height: 20px; vertical-align: middle; margin-left: 1px;"></span>
@@ -811,7 +812,7 @@
     </div>
 
     <div id="imagen-ampliada" class="imagen-grande" style="display: none;">
-        <img src="" alt="Imagen ampliada">
+        <img loading="lazy" src="" alt="Imagen ampliada">
     </div>
 
     <a href="https://wa.me/+593989026071" class="Btn text-decoration-none" target="_blank" title="¿Necesitas ayuda?">
