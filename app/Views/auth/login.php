@@ -11,10 +11,10 @@ Login
             <div class="card mb-0">
                 <div class="card-body">
                     <div class="brand-logo">
-                        <h2 class="brand-text text-primary ml-1">Iniciar sesión</h2>
+                        <img class="img-fluid w-50" src="<?=base_url("assets/images/login.png")?>" alt="">
                     </div>
 
-                    <h4 class="card-title mb-1 text-center"> </h4>
+                    <h1 class="card-title text-primary text-center ">Iniciar sesión</h1>
 
                     <form class="auth-login-form mt-2" action="<?= base_url("validate_login") ?>" method="POST">
                         <div class="form-group">
