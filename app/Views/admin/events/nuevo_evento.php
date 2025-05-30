@@ -76,6 +76,9 @@ Agregar eventos
                                     </div>
                                 </div>
 
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4"></div>
                                 <!-- Nuevo campo para la dirección del evento -->
@@ -89,7 +92,29 @@ Agregar eventos
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'event_duration') : '' ?></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Autor del evento</label>
+                                        <select id="author_id" class="form-control" name="author_id" required>
+                                            <option value="" disabled selected>Seleccione un autor</option>
+                                            <?php foreach ($authors as $author): ?>
+                                                <option value="<?= $author['id'] ?>" <?= isset($last_data) && $last_data['author_id'] == $author['id'] ? 'selected' : '' ?>>
+                                                    <?= $author['name'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <span class="text-danger">
+                                            <?= isset($validation) ? display_data($validation, 'author_id') : '' ?>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Dirección del evento</label>
                                         <input class="form-control" name="address" placeholder="" type="text"
@@ -98,7 +123,7 @@ Agregar eventos
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'address') : '' ?></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Categorías del evento</label>
 
@@ -116,6 +141,9 @@ Agregar eventos
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'categories') : '' ?></span>
                                     </div>
                                 </div>
+
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Fecha de inicio de la inscripción</label>
@@ -136,6 +164,9 @@ Agregar eventos
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'registrations_end_date') : '' ?></span>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Descripción del evento</label>
@@ -154,9 +185,10 @@ Agregar eventos
                                     <span
                                         class="text-danger"><?= isset($validation) ? display_data($validation, 'image') : '' ?></span>
                                 </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success">Agregar evento</button>
-                                </div>
+                            </div>
+
+                            <div class="row px-3 mt-2">
+                                <button type="submit" class="btn btn-success col">Agregar evento</button>
                             </div>
                         </form>
 

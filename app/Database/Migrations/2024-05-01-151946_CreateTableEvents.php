@@ -14,6 +14,11 @@ class CreateTableEvents extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
+            'author_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'null' => false,
+            ],
             'event_name' =>[
                 'type' => 'VARCHAR',
                 'constraint' => 255,
@@ -84,6 +89,7 @@ class CreateTableEvents extends Migration
             ],
         ]);
         $this->forge->addkey('id',true);
+        $this->forge->addForeignKey('author_id', 'authors', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('events');
 
     }

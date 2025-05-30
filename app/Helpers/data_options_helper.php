@@ -27,6 +27,7 @@ class ModulosAdmin
     const MIS_RECAUDACIONES = 'MIS_RECAUDACIONES';
     const RECAUDACIONES = 'RECAUDACIONES';
     const RECAUDACIONES_ONLINE = 'RECAUDACIONES_ONLINE';
+    const AUTORES = 'AUTORES';
 }
 
 class ModulosAdminPagos

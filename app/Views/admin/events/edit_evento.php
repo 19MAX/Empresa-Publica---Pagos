@@ -159,6 +159,9 @@ Editar evento
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'modality') : '' ?></span>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4"></div>
@@ -173,7 +176,31 @@ Editar evento
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'event_duration') : '' ?></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Autor del evento</label>
+                                        <select id="author_id" class="form-control" name="author_id" required>
+                                            <option value="" disabled <?= (!isset($last_data) && !isset($event)) ? 'selected' : '' ?>>Seleccione un autor</option>
+                                            <?php foreach ($authors as $author): ?>
+                                                <option value="<?= $author['id'] ?>" <?= ((isset($last_data) && $last_data['author_id'] == $author['id']) ||
+                                                      (isset($event) && $event['author_id'] == $author['id'])
+                                                  ) ? 'selected' : '' ?>>
+                                                    <?= $author['name'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
+                                        <span class="text-danger">
+                                            <?= isset($validation) ? display_data($validation, 'author_id') : '' ?>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Dirección del evento</label>
                                         <input class="form-control" name="address" placeholder="" type="text"
@@ -182,7 +209,7 @@ Editar evento
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'address') : '' ?></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Categorías del evento</label>
                                         <select id="id_cat" class="form-control select2" name="id_cat[]"
@@ -199,6 +226,10 @@ Editar evento
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'categories') : '' ?></span>
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Fecha de inicio de la inscripción</label>
@@ -219,6 +250,11 @@ Editar evento
                                             class="text-danger"><?= isset($validation) ? display_data($validation, 'registrations_end_date') : '' ?></span>
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="row">
+
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group has-feedback">
                                         <label class="control-label">Descripción del evento</label>
@@ -237,14 +273,16 @@ Editar evento
                                     <span
                                         class="text-danger"><?= isset($validation) ? display_data($validation, 'image') : '' ?></span>
                                 </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-warning">Actualizar evento</button>
-                                </div>
+
                             </div>
-                        </form>
 
-
+                            <div class="row px-3 mt-2">
+                                <button type="submit" class="btn btn-warning col">Actualizar evento</button>
+                            </div>
                     </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>

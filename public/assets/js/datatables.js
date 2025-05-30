@@ -233,6 +233,16 @@ $(document).ready(function () {
         ]
     });
 
+    //Tabla de autores
+    let authorsTable = initializeDataTable("#authors", {
+        buttons: [
+            {
+                extend: "pageLength",
+                className: "bg-secondary text-white",
+            },
+        ]
+    });
+
     let inscripcionesTrashTable = initializeDataTable("#inscripcionesTrash", {
         buttons: [
             {

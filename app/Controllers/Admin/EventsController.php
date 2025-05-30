@@ -2,6 +2,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\AuthorsModel;
 use App\Models\CategoryModel;
 use App\Models\EventCategoryModel;
 use App\Models\EventsModel;
@@ -50,6 +51,7 @@ class EventsController extends BaseController
     public function add()
     {
         $event_name = $this->request->getPost('event_name');
+        $author_id = $this->request->getPost('author_id');
         $short_description = $this->request->getPost('short_description');
         $event_date = $this->request->getPost('event_date');
         $address = $this->request->getPost('address');
@@ -62,6 +64,7 @@ class EventsController extends BaseController
 
         $data = [
             'event_name' => trim($event_name),
+            'author_id' => trim($author_id),
             'short_description' => trim($short_description),
             'event_date' => $event_date,
             'address' => trim($address),
@@ -81,6 +84,10 @@ class EventsController extends BaseController
                     'event_name' => [
                         'label' => 'Nombre del evento',
                         'rules' => 'required|min_length[3]|is_unique[events.event_name]',
+                    ],
+                    'author_id' => [
+                        'label' => 'Autor del evento',
+                        'rules' => 'required|numeric',
                     ],
                     'short_description' => [
                         'label' => 'Descripción del evento',
@@ -185,8 +192,13 @@ class EventsController extends BaseController
         $categoryModel = new CategoryModel();
         $all_category = $categoryModel->findAll();
 
+        $authorModel = new AuthorsModel();
+        $authors = $authorModel->findAll();
+
+
         $modulo = ModulosAdmin::EVENTS_ADD;
         $data = [
+            'authors' => $authors,
             'categories' => $all_category,
             'last_action' => $last_action,
             'last_data' => $last_data,
@@ -201,6 +213,7 @@ class EventsController extends BaseController
     {
         $id = $this->request->getPost('id');
         $event_name = $this->request->getPost('event_name');
+        $author_id = $this->request->getPost('author_id');
         $short_description = $this->request->getPost('short_description');
         $event_date = $this->request->getPost('event_date');
         $address = $this->request->getPost('address');
@@ -214,6 +227,7 @@ class EventsController extends BaseController
 
         $data = [
             'event_name' => trim($event_name),
+            'author_id' => trim($author_id),
             'short_description' => trim($short_description),
             'event_date' => $event_date,
             'address' => trim($address),
@@ -232,6 +246,10 @@ class EventsController extends BaseController
                     'event_name' => [
                         'label' => 'Nombre del evento',
                         'rules' => "required|min_length[3]|is_unique[events.event_name,id,{$id}]",
+                    ],
+                    'author_id' => [
+                        'label' => 'Autor del evento',
+                        'rules' => 'required|numeric',
                     ],
                     'short_description' => [
                         'label' => 'Descripción corta',
@@ -333,7 +351,12 @@ class EventsController extends BaseController
         $all_category = $categoryModel->findAll();
         $eventModel = new EventsModel();
         $event = $eventModel->getEventDetailsById($id);
+
+        $authorModel = new AuthorsModel();
+        $authors = $authorModel->findAll();
+
         $data = [
+            'authors' => $authors,
             'categories' => $all_category,
             'event' => $event,
             'last_action' => $last_action,

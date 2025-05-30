@@ -39,6 +39,40 @@ class EventsModel extends Model
     protected $beforeDelete = ['setDeletedBy'];
     protected $afterDelete = [];
 
+    public function getAuthorsWithEventCount()
+    {
+        return $this->db->query("
+        SELECT
+            authors.id,
+            authors.name,
+            authors.img,
+            COUNT(events.id) as event_count
+        FROM authors
+        LEFT JOIN events ON events.author_id = authors.id
+        WHERE events.event_status = 'Activo'
+        GROUP BY authors.id, authors.name, authors.img
+        HAVING event_count > 0
+        ORDER BY authors.name ASC
+    ")->getResultArray();
+    }
+
+    public function getEventsByAuthor($authorId)
+    {
+        return $this->select('
+        events.*,
+        GROUP_CONCAT(categories.category_name) AS categories,
+        authors.name AS author_name,
+        authors.img AS author_image
+    ')
+            ->join('event_category', 'event_category.event_id = events.id', 'left')
+            ->join('categories', 'categories.id = event_category.cat_id', 'left')
+            ->join('authors', 'authors.id = events.author_id', 'left')
+            ->where('events.event_status', 'Activo')
+            ->where('events.author_id', $authorId)
+            ->groupBy('events.id')
+            ->findAll();
+    }
+
     public function getAllEventsWithCategories()
     {
         return $this->select('events.*, GROUP_CONCAT(DISTINCT categories.category_name) AS categories, GROUP_CONCAT(DISTINCT categories.cantidad_dinero) AS prices')
@@ -50,9 +84,15 @@ class EventsModel extends Model
 
     public function getActiveAndCurrentEvents()
     {
-        return $this->select('events.*, GROUP_CONCAT(categories.category_name) AS categories')
+        return $this->select('
+                events.*,
+                GROUP_CONCAT(categories.category_name) AS categories,
+                authors.name AS author_name,
+                authors.img AS author_image
+            ')
             ->join('event_category', 'event_category.event_id = events.id', 'left')
             ->join('categories', 'categories.id = event_category.cat_id', 'left')
+            ->join('authors', 'authors.id = events.author_id', 'left')
             ->where('events.event_status', 'Activo')
             ->groupBy('events.id')
             ->findAll();
@@ -80,7 +120,7 @@ class EventsModel extends Model
 
     public function getEventDetailsById($id)
     {
-        return $this->select('events.id, events.event_name, events.short_description, events.event_date, events.modality, events.event_duration, events.address, events.registrations_start_date, events.registrations_end_date, events.event_status, events.image, GROUP_CONCAT(categories.id) AS category_ids, GROUP_CONCAT(categories.category_name) AS category_names')
+        return $this->select('events.id, events.author_id, events.event_name, events.short_description, events.event_date, events.modality, events.event_duration, events.address, events.registrations_start_date, events.registrations_end_date, events.event_status, events.image, GROUP_CONCAT(categories.id) AS category_ids, GROUP_CONCAT(categories.category_name) AS category_names')
             ->join('event_category', 'event_category.event_id = events.id', 'left')
             ->join('categories', 'categories.id = event_category.cat_id', 'left')
             ->where('events.id', $id)

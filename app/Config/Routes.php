@@ -14,6 +14,13 @@ $routes->group('admin', static function ($routes) {
 
     $routes->get('dashboard', 'Admin\DashboardController::index');
 
+    $routes->group('autores', static function ($autores) {
+        $autores->get('/', 'Admin\AutoresController::index');
+        $autores->post('add', 'Admin\AutoresController::add');
+        $autores->post('update/(:num)', 'Admin\AutoresController::update/$1');
+        $autores->post('delete/(:num)', 'Admin\AutoresController::delete/$1');
+    });
+
     $routes->post('buscar', 'Admin\FiltrosController::buscarPorCedula');
     $routes->get('inscripciones/', 'Admin\FiltrosController::index');
     $routes->get('inscripciones/(:num)', 'Admin\InscripcionesController::index/$1');
@@ -159,7 +166,7 @@ $routes->get('completado/(:num)/(:segment)', 'Payphone\PayphoneController::compl
 
 //Client
 $routes->get('/', 'Client\ClientController::index');
-$routes->post('obtener_user', 'Client\ClientController::obtenerUsuario');
+$routes->get('authors', 'Client\ClientController::authors');
 $routes->post('validar_cedula', 'Client\InscripcionController::validarCedula',['filter' => 'csrf']);
 $routes->post('obtener_datos_evento', 'Client\InscripcionController::obtenerDatosEvento');
 $routes->post('guardar_inscripcion', 'Client\InscripcionController::guardarInscripcion');

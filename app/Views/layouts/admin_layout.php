@@ -110,12 +110,12 @@
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
                     <li
-                        class="treeview <?= (isset($modulo) && checkActiveModule($modulo, ModulosAdminPagos::DASHBOARD)) ? 'active' : '' ?>">
+                        class="treeview <?= (isset($modulo) && checkActiveModule($modulo, ModulosAdmin::DASHBOARD)) ? 'active' : '' ?>">
                         <a href="#"> <i class="fa fa-dashboard"></i> <span>Panel</span>
                             <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
                         <ul class="treeview-menu">
                             <li
-                                class="<?= (isset($modulo) && checkActiveModule($modulo, ModulosAdminPagos::DASHBOARD)) ? 'active' : '' ?>">
+                                class="<?= (isset($modulo) && checkActiveModule($modulo, ModulosAdmin::DASHBOARD)) ? 'active' : '' ?>">
                                 <a href="<?= base_url("admin/dashboard") ?>">Estadísticas</a></li>
                         </ul>
                     </li>
@@ -189,6 +189,19 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="treeview <?= (isset($modulo) && checkActiveModule($modulo, ModulosAdmin::AUTORES)) ? 'active' : '' ?>">
+                        <a href="#"> <i class="fa fa-building"></i> <span>Autores</span>
+                            <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="<?= (isset($modulo) && checkActiveModule($modulo, ModulosAdmin::AUTORES)) ? 'active' : '' ?>">
+                                <a href="<?= base_url("admin/autores") ?>">Lista de autores</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li
                         class="treeview <?= (isset($modulo) && in_array($modulo, [ModulosAdmin::MIS_RECAUDACIONES,ModulosAdmin::RECAUDACIONES,ModulosAdmin::RECAUDACIONES_ONLINE])) ? 'active' : '' ?>">
                         <a href="#"> <i class="fa fa-book"></i>
@@ -229,11 +242,6 @@
 
         <!-- Content Wrapper. Contains page content -->
         <?= $this->renderSection('content'); ?>
-        <!-- /.content-wrapper -->
-        <!-- <footer class="main-footer">
-            <div class="pull-right hidden-xs">Version 1.2</div>
-            Copyright © 2017 Yourdomian. All rights reserved.
-        </footer> -->
     </div>
     <!-- ./wrapper -->
 
