@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use PaymentStatus;
 
 class PaymentsModel extends Model
 {
@@ -39,7 +40,33 @@ class PaymentsModel extends Model
     protected $beforeDelete = ['setDeletedBy'];
     protected $afterDelete = [];
 
+    public function verificarPagoAprobado($cedula, $codigoPago)
+    {
+        $query = $this->select('
+                payments.id AS id_pago,
+                payments.payment_cod AS codigo_pago,
+                registrations.ic AS cedula,
+                registrations.full_name_user AS nombres,
+                payments.payment_status,
+                payments.num_autorizacion
+            ')
+            ->join('registrations', 'payments.id_register = registrations.id')
+            ->where('registrations.ic', $cedula)
+            ->where('payments.payment_cod', $codigoPago)
+            ->where('payments.deleted_at IS NULL')
+            ->where('registrations.deleted_at IS NULL')
+            ->get()
+            ->getRowArray();
 
+        if ($query) {
+            // Verificar si el estado del pago es "Aprobado" (asumiendo que PaymentStatus::Aprobado es 1)
+            $query['esta_aprobado'] = ($query['payment_status'] == PaymentStatus::Completado);
+
+            return $query;
+        }
+
+        return null;
+    }
 
     public function getPaymentByNumAutorizacion($num_autorizacion)
     {

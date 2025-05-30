@@ -277,22 +277,49 @@ document.addEventListener("DOMContentLoaded", function () {
           title: "<strong>¡Registro Exitoso!</strong>",
           icon: "success",
           html: `
-              <p style="color: #0C244B;">Te has registrado para el evento: </br><b>${data.eventName}</b></p>
-               <!--<p>Tienes <b>${diasRestantes}</b> días para realizar el pago.</p>-->
-              <p style="color: #0C244B;">Comprobante de registro enviado a: <b>${data.email}</b></p>
-              <p><strong style="color: #0C244B;">Tu código de pago es:</strong></p>
-              <h2 style="color: #0C244B; border: 2px solid #ff416c; padding: 10px; display: inline-block; border-radius: 30px;">
-                ${data.codigoPago}
-              </h2>
-              <hr>
-              <h3 style="color: #ff416c;">¡IMPORTANTE!</h3>
-              <p><strong style="color: #ff416c;">Tu inscripción no estará completa hasta que realices el pago.</strong></p>
-              <p>Si eliges <b>pago por depósito bancario</b>, deberás subir el comprobante de pago en la plataforma para que sea validado.</p>
-              <p><strong style="color: #ff416c;">¡Asegúrate de completar este paso para confirmar tu inscripción!</strong></p>
-            `,
+              <div style="text-align: center;">
+                  <p style="color: #0C244B; font-size: 16px; margin-bottom: 20px;">
+                      Te registraste para: <strong>${data.eventName}</strong>
+                  </p>
+                  <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                      <p style="color: #0C244B; margin-bottom: 10px;"><strong>Tu código de pago:</strong></p>
+                      <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                          <h3 id="codigoPagoDisplay" style="color: #ff416c; margin: 0; padding: 10px 15px; border: 2px solid #ff416c; border-radius: 8px; background: white;">
+                              ${data.codigoPago}
+                          </h3>
+                          <button onclick="copiarCodigo('${data.codigoPago}')" 
+                                  style="background: #ff416c; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-size: 14px;">
+                              📋 Copiar
+                          </button>
+                      </div>
+                  </div>
+                  <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                      Comprobante enviado a: <strong>${data.email}</strong>
+                  </p>
+                  <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ff416c; margin: 20px 0;">
+                      <p style="color: #ff416c; font-weight: bold; margin: 0;">
+                          ⚠️ Completa tu pago para confirmar tu inscripción
+                      </p>
+                  </div>
+              </div>
+          `,
           showCloseButton: true,
-          confirmButtonText: 'Entendido',
+          showCancelButton: true,
+          confirmButtonText: '💳 Pagar Ahora',
+          cancelButtonText: 'Pagar Después',
+          confirmButtonColor: '#ff416c',
+          cancelButtonColor: '#6c757d',
+          customClass: {
+            confirmButton: 'btn-pagar-ahora',
+            cancelButton: 'btn-pagar-despues'
+          }
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Abrir modal de método de pago
+            abrirModalMetodoPago(data.codigoPago);
+          }
         });
+
         $("#modalDetallesEvento").modal("hide");
       } else {
         swal("Ups! Algo salió mal!", "La acción no se pudo realizar correctamente!", "error");
@@ -331,6 +358,17 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(response => response.json())
       .then(data => {
         hidePreloader();
+        // Verificar si el pago ya está completado
+        if (!data.success && data.already_paid) {
+          Swal.fire({
+            title: "Pago completado",
+            html: `Este pago ya ha sido procesado<br><br>
+                    <strong>Estado:</strong> Completado`,
+            icon: "info",
+            confirmButtonText: `Entendido`,
+          });
+          return;
+        }
         if (data.success) {
           if (metodoPago === 'deposito') {
             mostrarModalDeposito(data, cedula, codigoPago);
@@ -504,6 +542,23 @@ document.addEventListener("DOMContentLoaded", function () {
       tablaDepositos.innerHTML = '<p class="text-muted">No hay depósitos registrados.</p>';
     }
     tablaDepositos.style.display = 'block';
+  }
+
+  // Función para abrir el modal de método de pago
+  function abrirModalMetodoPago(codigoPago) {
+    // Asignar el código de pago al campo correspondiente
+    if (document.getElementById('codigoPagoMetodo')) {
+      document.getElementById('codigoPagoMetodo').value = codigoPago;
+    }
+
+    // Mostrar el modal de método de pago
+    if (typeof bootstrap !== 'undefined') {
+      const modalMetodo = new bootstrap.Modal(document.getElementById('modalMetodo'));
+      modalMetodo.show();
+    } else {
+      // Fallback para jQuery
+      $('#modalMetodo').modal('show');
+    }
   }
 
   // Aplicar la misma validación al input con ID "numeroCedulaRegistro"

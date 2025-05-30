@@ -60,6 +60,18 @@ class PayphoneController extends BaseController
         }
 
         try {
+            // Primero verificamos si el pago ya está aprobado
+            $pagoVerificado = $this->paymentsModel->verificarPagoAprobado($depositoCedula, $codigoPago);
+
+            if ($pagoVerificado && $pagoVerificado['esta_aprobado']) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'already_paid' => true,
+                    'message' => 'Este pago ya ha sido aprobado anteriormente',
+                ], 400);
+            }
+
+            // Si no está aprobado, procedemos con el proceso de pago
             $result = $this->registrationsModel->MountPayphone($depositoCedula, $codigoPago);
 
             if (!$result) {
@@ -83,6 +95,7 @@ class PayphoneController extends BaseController
 
             return $this->response->setJSON([
                 'success' => true,
+                'already_paid' => false,
                 'data' => [
                     'token' => $token,
                     'store' => $store,
