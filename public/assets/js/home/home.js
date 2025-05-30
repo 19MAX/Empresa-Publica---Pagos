@@ -544,6 +544,49 @@ document.addEventListener("DOMContentLoaded", function () {
     tablaDepositos.style.display = 'block';
   }
 
+  // Función para copiar el código de pago
+  function copiarCodigo(codigo) {
+    navigator.clipboard.writeText(codigo).then(() => {
+      // Mostrar feedback visual
+      const botonCopiar = event.target;
+      const textoOriginal = botonCopiar.innerHTML;
+      botonCopiar.innerHTML = '✅ Copiado';
+      botonCopiar.style.background = '#28a745';
+
+      setTimeout(() => {
+        botonCopiar.innerHTML = textoOriginal;
+        botonCopiar.style.background = '#ff416c';
+      }, 2000);
+
+      // Toast de confirmación
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: 'Código copiado al portapapeles',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }).catch(() => {
+      // Fallback para navegadores que no soportan clipboard API
+      const textArea = document.createElement('textarea');
+      textArea.value = codigo;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: 'Código copiado',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    });
+  }
+
   // Función para abrir el modal de método de pago
   function abrirModalMetodoPago(codigoPago) {
     // Asignar el código de pago al campo correspondiente
