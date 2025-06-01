@@ -1,6 +1,8 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
+# events img
+public/assets/images/events/
 
 # OS X
 .DS_Store

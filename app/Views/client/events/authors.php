@@ -16,6 +16,7 @@
     <!-- Preloader -->
     <link rel="stylesheet" href="<?= base_url("assets/css/preloader.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/css/whatsapp.css") ?>">
+    <link rel="stylesheet" href="<?= base_url("assets/css/authors.css") ?>">
     <script type="text/javascript">
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
@@ -32,138 +33,32 @@
     </div>
 
     <style>
-        .author-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        .author-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border-color: #0C244B;
-        }
-
-        .author-card.active {
-            border-color: #0C244B;
-            background: linear-gradient(135deg, #0C244B 0%, #1a3a6b 100%);
-            color: white;
-        }
-
-        .author-card.active .author-name {
-            color: white;
-        }
-
-        .author-card.active .event-count {
-            color: #ffc107;
-        }
-
-        .author-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border: 3px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-
-        .author-card:hover .author-image {
-            border-color: #0C244B;
-            transform: scale(1.1);
-        }
-
-        .author-card.active .author-image {
-            border-color: white;
-        }
-
-        .author-name {
-            color: #0C244B;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .event-count {
-            color: #6c757d;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-
-        @media (min-width: 550px) and (max-width: 767.98px) {
-            .col-12.col-sm-12 {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
-        }
-
-        .section-title {
-            color: #0C244B;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .filter-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .events-section {
-            min-height: 400px;
-        }
-
         .no-events {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 300px;
+            height: 100%;
+            width: 100%;
             text-align: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            margin: 2rem 0;
+            font-size: 1.5rem;
+            color: #555;
+            background-color: #f8f9fa;
+            border-radius: 10px;
         }
 
-        .no-events i {
-            font-size: 4rem;
-            color: #6c757d;
-            margin-bottom: 1rem;
+        .no-events h2 {
+            color: #0C244B;
         }
 
-        .btn-show-all {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-show-all:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .author-card {
-                margin-bottom: 1rem;
-            }
-
-            .filter-section {
-                padding: 1rem;
-            }
+        .no-events p {
+            color: #888;
         }
     </style>
-
     <main class="flex-grow-1" style="background-color: #f5f7fa;">
-        <!-- Navigation -->
+
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
             <div class="container-fluid">
-                <a class="navbar-brand ms-lg-4" href="<?=base_url("/")?>">
+                <a class="navbar-brand ms-lg-4" href="">
                     <!-- <h4>EVENTO PAGOS</h4> -->
                     <img loading="lazy" class="img-fluid" width="90px"
                         src="<?= base_url("assets/images/logo-ep.png") ?>" alt="Logo de eventos pagos">
@@ -175,11 +70,6 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <!-- Añadir este botón dentro del <ul class="navbar-nav"> junto a los otros botones -->
-                        <li class="nav-item">
-                            <a href="<?=base_url("authors")?>" title="Organizadores" class="btn btn-outline-light me-2 mb-2 mb-lg-0" type="button">
-                                <i class="fa-solid fa-user"></i> Organizadores
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <button title="Puntos de Recaudación" class="btn btn-outline-light me-2 mb-2 mb-lg-0"
                                 data-bs-toggle="modal" data-bs-target="#modalPuntosRecaudacion" type="button">
@@ -209,24 +99,15 @@
 
         <div class="container mt-4 mb-5">
             <!-- Sección de Filtro por Autores -->
-            <div class="filter-section">
-                <h2 class="section-title">
-                    <i class="fa-solid fa-users"></i> Patrocinadores y Organizadores
-                </h2>
-
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <p class="text-muted mb-0">Selecciona un patrocinador para ver sus eventos</p>
-                    <button class="btn btn-show-all" onclick="showAllEvents()">
-                        <i class="fa-solid fa-list"></i> Ver Todos los Eventos
-                    </button>
-                </div>
+            <div class="filter-section fade-in">
+                <p class="section-subtitle">Selecciona un patrocinador para ver sus eventos disponibles</p>
 
                 <div class="row" id="authorsContainer">
                     <?php if (!empty($authors)): ?>
                         <?php foreach ($authors as $author): ?>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3 mobile-author-col">
                                 <div class="author-card card h-100 p-3 text-center"
-                                    onclick="filterEventsByAuthor(<?= $author['id'] ?>, this)"
+                                    onclick="filterEventsByAuthor(<?= $author['id'] ?>, this, '<?= htmlspecialchars($author['name']) ?>')"
                                     data-author-id="<?= $author['id'] ?>">
                                     <div class="card-body d-flex flex-column align-items-center">
                                         <?php if (!empty($author['img'])): ?>
@@ -235,7 +116,7 @@
                                         <?php else: ?>
                                             <div
                                                 class="author-image rounded-circle mb-3 d-flex align-items-center justify-content-center bg-light">
-                                                <i class="fa-solid fa-building fa-2x text-muted"></i>
+                                                <i class="fa-solid fa-building fa-lg text-muted"></i>
                                             </div>
                                         <?php endif; ?>
                                         <h5 class="author-name"><?= $author['name'] ?></h5>
@@ -248,28 +129,26 @@
                 </div>
             </div>
 
+            <!-- Mensaje de Bienvenida (mostrado inicialmente) -->
+            <div class="welcome-section" id="welcomeSection">
+                <i class="fa-solid fa-hand-wave"></i>
+                <h3>¡Bienvenido a nuestros eventos!</h3>
+                <p>Selecciona un patrocinador arriba para descubrir todos los eventos emocionantes que tiene disponibles
+                    para ti.</p>
+            </div>
+
             <!-- Sección de Eventos -->
-            <div class="events-section">
-                <h2 class="section-title">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span id="eventsTitle">Todos los Eventos</span>
-                </h2>
+            <div class="events-section" id="eventsSection" style="display: none;">
 
                 <div class="row" id="eventsContainer">
                     <?php if (!empty($events)): ?>
                         <?php foreach ($events as $event): ?>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 p-3 event-item"
-                                data-author-id="<?= $event['author_id'] ?>">
+                                data-author-id="<?= $event['author_id'] ?>" style="display: none;">
                                 <div class="bg-white shadow rounded-2">
-                                    <figure class="p-1">
+                                    <figure style="cursor: pointer;" class="p-1">
                                         <img loading="lazy" src="<?= base_url("") . $event['image']; ?>" alt="Imagen del Curso"
-                                            class="img-fluid imagen-pequena rounded-2 ">
-                                    </figure>
-                                    <figure class="text-center">
-                                        <?php if (!empty($event['author_image'])): ?>
-                                            <img loading="lazy" src="<?= base_url($event['author_image']) ?>" alt="Imagen del autor"
-                                                class="img-fluid" style="width: 120px; height: 25px; object-fit: cover;">
-                                        <?php endif; ?>
+                                            class="img-fluid imagen-pequena rounded-2">
                                     </figure>
 
                                     <section class="px-2">
@@ -313,6 +192,93 @@
                             </div>
                         </div>
                     <?php endif; ?>
+
+                    <style>
+                        @media (min-width: 550px) and (max-width: 767.98px) {
+                            .col-12.col-sm-12 {
+                                flex: 0 0 50%;
+                                max-width: 50%;
+                            }
+                        }
+
+                        .modal-lg {
+                            max-width: 900px;
+                        }
+
+                        .card {
+                            transition: transform 0.2s ease-in-out;
+                            overflow: hidden;
+                        }
+
+                        .card:hover {
+                            transform: translateY(-5px);
+                        }
+
+                        .rounded-circle {
+                            width: 50px;
+                            height: 50px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        .card-img-wrapper {
+                            position: relative;
+                            overflow: hidden;
+                            height: 200px;
+                        }
+
+                        .sucursal-img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .card:hover .sucursal-img {
+                            transform: scale(1.1);
+                        }
+
+                        .img-overlay {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+                            padding: 20px;
+                            transition: all 0.3s ease;
+                        }
+
+                        .card:hover .img-overlay {
+                            background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%);
+                        }
+
+                        .modal-content {
+                            border-radius: 15px;
+                            overflow: hidden;
+                        }
+
+                        .card {
+                            border-radius: 10px;
+                        }
+
+                        .list-unstyled li {
+                            padding: 8px 0;
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                        }
+
+                        .list-unstyled li:last-child {
+                            border-bottom: none;
+                        }
+
+                        .text-home {
+                            color: #0C244B !important;
+                        }
+
+                        .bg-home {
+                            background-color: #0C244B !important;
+                        }
+                    </style>
                 </div>
 
                 <!-- Mensaje cuando no hay eventos del autor seleccionado -->
@@ -321,15 +287,14 @@
                         <i class="fa-solid fa-search"></i>
                         <h3>No hay eventos para este patrocinador</h3>
                         <p class="text-muted">Este patrocinador no tiene eventos activos en este momento.</p>
-                        <button class="btn btn-show-all mt-3" onclick="showAllEvents()">
-                            Ver Todos los Eventos
+                        <button class="btn btn-back mt-3" onclick="showWelcome()">
+                            <i class="fa-solid fa-arrow-left"></i> Volver a patrocinadores
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
 
     <!-- Modal de Puntos de Recaudación -->
     <div class="modal fade" id="modalPuntosRecaudacion" tabindex="-1" aria-labelledby="modalPuntosRecaudacionLabel"
@@ -912,6 +877,11 @@
         <div class="text">Soporte</div>
     </a>
 
+    <!-- Botón flotante para volver al inicio -->
+    <button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()" title="Volver al inicio">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <!-- Footer-->
     <footer class="bg-dark text-light py-4 mt-auto">
         <div class="container-fluid text-center">
@@ -1019,102 +989,8 @@
     <script src="<?= base_url("assets/js/preloader.js") ?>"></script>
 
     <!-- Scripts -->
-    <script>
-        function filterEventsByAuthor(authorId, authorCard) {
-            // Remover clase active de todas las tarjetas de autor
-            document.querySelectorAll('.author-card').forEach(card => {
-                card.classList.remove('active');
-            });
-
-            // Agregar clase active a la tarjeta seleccionada
-            authorCard.classList.add('active');
-
-            // Obtener el nombre del autor
-            const authorName = authorCard.querySelector('.author-name').textContent;
-
-            // Actualizar el título
-            document.getElementById('eventsTitle').textContent = `Eventos de ${authorName}`;
-
-            // Ocultar todos los eventos
-            const eventItems = document.querySelectorAll('.event-item');
-            let hasVisibleEvents = false;
-
-            eventItems.forEach(item => {
-                if (item.dataset.authorId == authorId) {
-                    item.style.display = 'block';
-                    hasVisibleEvents = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            // Mostrar/ocultar mensaje de "no hay eventos"
-            const noEventsMessage = document.getElementById('noEventsMessage');
-            if (!hasVisibleEvents) {
-                noEventsMessage.style.display = 'flex';
-            } else {
-                noEventsMessage.style.display = 'none';
-            }
-
-            // Scroll hacia la sección de eventos
-            document.querySelector('.events-section').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        function showAllEvents() {
-            // Remover clase active de todas las tarjetas de autor
-            document.querySelectorAll('.author-card').forEach(card => {
-                card.classList.remove('active');
-            });
-
-            // Actualizar el título
-            document.getElementById('eventsTitle').textContent = 'Todos los Eventos';
-
-            // Mostrar todos los eventos
-            document.querySelectorAll('.event-item').forEach(item => {
-                item.style.display = 'block';
-            });
-
-            // Ocultar mensaje de "no hay eventos"
-            document.getElementById('noEventsMessage').style.display = 'none';
-        }
-
-        // Animación de entrada para las tarjetas
-        document.addEventListener('DOMContentLoaded', function () {
-            const authorCards = document.querySelectorAll('.author-card');
-            const eventCards = document.querySelectorAll('.event-card');
-
-            // Animar tarjetas de autores
-            authorCards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    card.style.transition = 'all 0.6s ease';
-
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100);
-                }, index * 100);
-            });
-
-            // Animar tarjetas de eventos
-            eventCards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    card.style.transition = 'all 0.6s ease';
-
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100);
-                }, index * 50 + 800);
-            });
-        });
-    </script>
+    <script src="<?= base_url("assets/js/authors.js") ?>"></script>
+    <script src="<?= base_url("assets/js/cursor-manager.js") ?>"></script>
 </body>
 
 </html>

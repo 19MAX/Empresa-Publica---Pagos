@@ -67,12 +67,6 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <!-- Añadir este botón dentro del <ul class="navbar-nav"> junto a los otros botones -->
-                        <li class="nav-item">
-                            <a href="<?=base_url("authors")?>" title="Organizadores" class="btn btn-outline-light me-2 mb-2 mb-lg-0" type="button">
-                                <i class="fa-solid fa-user"></i> Organizadores
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <button title="Puntos de Recaudación" class="btn btn-outline-light me-2 mb-2 mb-lg-0"
                                 data-bs-toggle="modal" data-bs-target="#modalPuntosRecaudacion" type="button">

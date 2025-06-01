@@ -10,12 +10,12 @@
     cursor: pointer;
     position: fixed;
     right: 20px;
-    bottom: 40px;
+    bottom: 100px; /* Cambiado de 40px a 100px para dar espacio al botón de subir */
     overflow: hidden;
     transition-duration: 0.3s;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
     background-color: #00d757;
-    z-index: 100;
+    z-index: 99; /* Reducido de 100 a 99 para que esté debajo del botón de subir */
 }
 
 .sign {

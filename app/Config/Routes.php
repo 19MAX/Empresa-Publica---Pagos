@@ -165,7 +165,7 @@ $routes->get('respuesta', 'Payphone\PayphoneController::respuesta');
 $routes->get('completado/(:num)/(:segment)', 'Payphone\PayphoneController::completado/$1/$2');
 
 //Client
-$routes->get('/', 'Client\ClientController::index');
+$routes->get('/', 'Client\ClientController::authors');
 $routes->get('authors', 'Client\ClientController::authors');
 $routes->post('validar_cedula', 'Client\InscripcionController::validarCedula',['filter' => 'csrf']);
 $routes->post('obtener_datos_evento', 'Client\InscripcionController::obtenerDatosEvento');
