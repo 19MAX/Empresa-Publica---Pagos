@@ -111,7 +111,7 @@
                                     data-author-id="<?= $author['id'] ?>">
                                     <div class="card-body d-flex flex-column align-items-center">
                                         <?php if (!empty($author['img'])): ?>
-                                            <img src="<?= base_url($author['img']) ?>" alt="<?= $author['name'] ?>"
+                                            <img loading="lazy" src="<?= base_url($author['img']) ?>" alt="<?= $author['name'] ?>"
                                                 class="author-image rounded-circle mb-3">
                                         <?php else: ?>
                                             <div
