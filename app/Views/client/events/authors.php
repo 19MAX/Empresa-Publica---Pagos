@@ -100,7 +100,7 @@
         <div class="container mt-4 mb-5">
             <!-- Sección de Filtro por Autores -->
             <div class="filter-section fade-in">
-                <p class="section-subtitle">Selecciona un patrocinador para ver sus eventos disponibles</p>
+                <p class="section-subtitle">Selecciona un organizador para ver sus eventos disponibles</p>
 
                 <div class="row" id="authorsContainer">
                     <?php if (!empty($authors)): ?>
@@ -133,7 +133,7 @@
             <div class="welcome-section" id="welcomeSection">
                 <i class="fa-solid fa-hand-wave"></i>
                 <h3>¡Bienvenido a nuestros eventos!</h3>
-                <p>Selecciona un patrocinador arriba para descubrir todos los eventos emocionantes que tiene disponibles
+                <p>Selecciona un organizador arriba para descubrir todos los eventos emocionantes que tiene disponibles
                     para ti.</p>
             </div>
 
@@ -285,10 +285,10 @@
                 <div class="no-events" id="noEventsMessage" style="display: none;">
                     <div>
                         <i class="fa-solid fa-search"></i>
-                        <h3>No hay eventos para este patrocinador</h3>
-                        <p class="text-muted">Este patrocinador no tiene eventos activos en este momento.</p>
+                        <h3>No hay eventos para este organizador</h3>
+                        <p class="text-muted">Este organizador no tiene eventos activos en este momento.</p>
                         <button class="btn btn-back mt-3" onclick="showWelcome()">
-                            <i class="fa-solid fa-arrow-left"></i> Volver a patrocinadores
+                            <i class="fa-solid fa-arrow-left"></i> Volver a organizadores
                         </button>
                     </div>
                 </div>
