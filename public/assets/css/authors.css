@@ -52,24 +52,46 @@
     font-weight: 600;
 }
 
+/* Contenedor de imagen del autor */
+.author-image-wrapper {
+    width: 80px;
+    height: 80px;
+    /* background: #f1f3f5; */
+    border: 3px solid #e9ecef;
+    border-radius: 20%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+
 /* Imagen del autor */
 .author-image {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border: 3px solid #e9ecef;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+
+.author-card:hover .author-image-wrapper {
+    border-color: #0C244B;
 }
 
 .author-card:hover .author-image {
-    border-color: #0C244B;
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.1);
+}
+
+
+.author-card.active .author-image-wrapper {
+    border-color: white;
 }
 
 .author-card.active .author-image {
-    border-color: white;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 /* Nombre del autor */
@@ -162,8 +184,8 @@
 .filter-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     border-radius: 20px;
-    padding: 2.5rem 2rem;
-    margin-bottom: 3rem;
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     border: 1px solid #e9ecef;
 }

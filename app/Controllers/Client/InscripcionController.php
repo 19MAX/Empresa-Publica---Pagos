@@ -373,10 +373,13 @@ class InscripcionController extends BaseController
     {
         $data = $this->request->getJSON();
 
+        if (!empty($data->website)) {
+            return $this->response->setJSON(['error' => true, 'message' => 'Petición inválida.']);
+        }
         // Aplicar trim a todos los campos relevantes
         $data->numeroCedula = trim($data->numeroCedula);
-        $data->nombres = trim($data->nombres);
-        $data->apellidos = trim($data->apellidos);
+        $data->nombres = strtoupper(trim($data->nombres));
+        $data->apellidos = strtoupper(trim($data->apellidos));
         $data->telefono = trim($data->telefono);
         $data->email = trim($data->email);
         $data->direccion = trim($data->direccion);
@@ -390,15 +393,15 @@ class InscripcionController extends BaseController
                 ],
                 'nombres' => [
                     'label' => 'Nombres',
-                    'rules' => 'required|min_length[3]',
+                    'rules' => 'required|min_length[9]',
                 ],
                 'apellidos' => [
                     'label' => 'Apellidos',
-                    'rules' => 'required|min_length[3]',
+                    'rules' => 'required|min_length[9]',
                 ],
                 'telefono' => [
                     'label' => 'Número de teléfono o celular',
-                    'rules' => 'required|numeric|min_length[10]',
+                    'rules' => 'required|numeric|min_length[10]|max_length[10]',
                 ],
                 'email' => [
                     'label' => 'Correo electrónico',

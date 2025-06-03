@@ -170,7 +170,7 @@ $routes->get('authors', 'Client\ClientController::authors');
 $routes->post('validar_cedula', 'Client\InscripcionController::validarCedula',['filter' => 'csrf']);
 $routes->post('obtener_datos_evento', 'Client\InscripcionController::obtenerDatosEvento');
 $routes->post('guardar_inscripcion', 'Client\InscripcionController::guardarInscripcion');
-$routes->post('registrar_usuario', 'Client\InscripcionController::registrarUsuario');
+$routes->post('registrar_usuario', 'Client\InscripcionController::registrarUsuario', ['filter' => 'antibot']);
 $routes->post('deposito', 'Client\DepositosController::deposito');
 $routes->post('monto_pago', 'Client\DepositosController::fetchMontoDeposito');
 $routes->post('limpiar_persona', 'Client\InscripcionController::limpiarSesionPersona');

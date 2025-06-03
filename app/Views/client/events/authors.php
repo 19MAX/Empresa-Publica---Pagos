@@ -106,16 +106,23 @@
                     <?php if (!empty($authors)): ?>
                         <?php foreach ($authors as $author): ?>
                             <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3 mobile-author-col">
-                                <div class="author-card card h-100 p-3 text-center"
+                                <div class="author-card pt-3 text-center"
                                     onclick="filterEventsByAuthor(<?= $author['id'] ?>, this, '<?= htmlspecialchars($author['name']) ?>')"
                                     data-author-id="<?= $author['id'] ?>">
                                     <div class="card-body d-flex flex-column align-items-center">
                                         <?php if (!empty($author['img'])): ?>
-                                            <img loading="lazy" src="<?= base_url($author['img']) ?>" alt="<?= $author['name'] ?>"
-                                                class="author-image rounded-circle mb-3">
+                                            <div class="author-image-wrapper mb-3">
+                                                <?php if (!empty($author['img'])): ?>
+                                                    <img loading="lazy" src="<?= base_url($author['img']) ?>"
+                                                        alt="<?= $author['name'] ?>" class="author-image">
+                                                <?php else: ?>
+                                                    <i class="fa-solid fa-building fa-xl text-muted"></i>
+                                                <?php endif; ?>
+                                            </div>
+
                                         <?php else: ?>
                                             <div
-                                                class="author-image rounded-circle mb-3 d-flex align-items-center justify-content-center bg-light">
+                                                class="author-image mb-3 d-flex align-items-center justify-content-center bg-light">
                                                 <i class="fa-solid fa-building fa-lg text-muted"></i>
                                             </div>
                                         <?php endif; ?>
@@ -515,6 +522,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="formRegistroUsuario">
+                        <input type="text" name="website" style="" tabindex="-1" autocomplete="off">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="numeroCedulaRegistro" class="form-label">Número de Cédula</label>

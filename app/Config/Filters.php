@@ -15,6 +15,7 @@ use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\SessionAdmin;
 use App\Filters\SessionPagos;
 use App\Filters\SessionProservi;
+use App\Filters\AntiBot;
 
 class Filters extends BaseFilters
 {
@@ -28,6 +29,7 @@ class Filters extends BaseFilters
      * or [filter_name => [classname1, classname2, ...]]
      */
     public array $aliases = [
+        'antibot' => AntiBot::class,
         'csrf' => CSRF::class,
         'toolbar' => DebugToolbar::class,
         'honeypot' => Honeypot::class,
