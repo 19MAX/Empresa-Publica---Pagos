@@ -522,7 +522,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="formRegistroUsuario">
-                        <input type="text" name="website" style="" tabindex="-1" autocomplete="off">
+                        <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="numeroCedulaRegistro" class="form-label">Número de Cédula</label>
