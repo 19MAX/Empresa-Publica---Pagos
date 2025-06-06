@@ -152,36 +152,41 @@ class PayphoneController extends BaseController
 
             $dataAPI = $result['data'];
 
+            // Verificar si el pago fue aprobado por Payphone
+            $pagoAprobado = $dataAPI['transactionStatus'] === 'Approved' && $dataAPI['statusCode'] == 3;
+
             // Aprobar solo si aún no ha sido aprobado y el estado es "Approved"
-            if (!$yaAprobado && $dataAPI['transactionStatus'] === 'Approved' && $dataAPI['statusCode'] == 3) {
+            if (!$yaAprobado && $pagoAprobado) {
                 $this->paymentApprovalService->approvePayment($paymentId, null, '3');
             }
 
-            // Solo insertar si aún no existe el registro de esta transacción
-            $existePago = $this->pagosEnLineaModel
-                ->where('transaction_id', $dataAPI['transactionId'])
-                ->first();
+            // Solo insertar si el pago fue aprobado Y aún no existe el registro de esta transacción
+            if ($pagoAprobado) {
+                $existePago = $this->pagosEnLineaModel
+                    ->where('transaction_id', $dataAPI['transactionId'])
+                    ->first();
 
-            if (!$existePago) {
-                $this->pagosEnLineaModel->insert([
-                    'status_code' => $dataAPI['statusCode'],
-                    'payment_id' => $paymentId,
-                    'transaction_status' => $dataAPI['transactionStatus'],
-                    'client_transaction_id' => $dataAPI['clientTransactionId'],
-                    'authorization_code' => $dataAPI['authorizationCode'] ?? null,
-                    'transaction_id' => $dataAPI['transactionId'],
-                    'email' => $dataAPI['email'] ?? null,
-                    'phone_number' => $dataAPI['phoneNumber'] ?? null,
-                    'document' => $dataAPI['document'] ?? null,
-                    'amount' => $dataAPI['amount'],
-                    'card_type' => $dataAPI['cardType'] ?? null,
-                    'card_brand' => $dataAPI['cardBrand'] ?? null,
-                    'message' => $dataAPI['message'] ?? null,
-                    'message_code' => $dataAPI['messageCode'] ?? null,
-                    'currency' => $dataAPI['currency'],
-                    'transaction_date' => $dataAPI['date'],
-                    'created_at' => date('Y-m-d H:i:s'),
-                ]);
+                if (!$existePago) {
+                    $this->pagosEnLineaModel->insert([
+                        'status_code' => $dataAPI['statusCode'],
+                        'payment_id' => $paymentId,
+                        'transaction_status' => $dataAPI['transactionStatus'],
+                        'client_transaction_id' => $dataAPI['clientTransactionId'],
+                        'authorization_code' => $dataAPI['authorizationCode'] ?? null,
+                        'transaction_id' => $dataAPI['transactionId'],
+                        'email' => $dataAPI['email'] ?? null,
+                        'phone_number' => $dataAPI['phoneNumber'] ?? null,
+                        'document' => $dataAPI['document'] ?? null,
+                        'amount' => $dataAPI['amount'],
+                        'card_type' => $dataAPI['cardType'] ?? null,
+                        'card_brand' => $dataAPI['cardBrand'] ?? null,
+                        'message' => $dataAPI['message'] ?? null,
+                        'message_code' => $dataAPI['messageCode'] ?? null,
+                        'currency' => $dataAPI['currency'],
+                        'transaction_date' => $dataAPI['date'],
+                        'created_at' => date('Y-m-d H:i:s'),
+                    ]);
+                }
             }
 
             $paymentSearch = $this->paymentsModel->find($paymentId);
