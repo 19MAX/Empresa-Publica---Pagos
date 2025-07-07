@@ -83,7 +83,7 @@ class PayphoneController extends BaseController
 
             $payment_id = $result['payment_id'];
             $montoBase = $result['cantidad_dinero'];
-            $por = 0.07;
+            $por = 0.08;
             $iva = 1.15;
 
             $tot = ($montoBase * $por) * $iva;
