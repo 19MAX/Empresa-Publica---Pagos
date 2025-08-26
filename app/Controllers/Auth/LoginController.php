@@ -31,8 +31,9 @@ class LoginController extends BaseController
         ];
 
         $accessGranted = grantAccess();
-        if ($accessGranted) return $accessGranted;
-        return view('auth/login',$data);
+        if ($accessGranted)
+            return $accessGranted;
+        return view('auth/login', $data);
     }
     public function login()
     {
@@ -62,6 +63,12 @@ class LoginController extends BaseController
 
                 // Buscar al usuario por su correo electrónico
                 $user = $loginModel->where('email', $email)->first();
+
+
+                if ($user['rol_id'] == RolesOptions::UsuarioPublico) {
+                    throw new \RuntimeException('Error de autorización ' . $user['first_name']);
+                }
+
                 if ($user) {
                     // Verificar la contraseña
                     if (password_verify($password, $user['password'])) {
@@ -89,7 +96,7 @@ class LoginController extends BaseController
                                 return redirect('login');
                         }
                     } else {
-                        return $this->redirectView(null, [['Contraseña incorrecta', 'danger']], $data);
+                        return $this->redirectView(null, [['Datos inválidos', 'danger']], $data);
                     }
                 } else {
                     return $this->redirectView(null, [['Correo electrónico no registrado', 'danger']], $data);
@@ -98,19 +105,22 @@ class LoginController extends BaseController
                 return $this->redirectView($validation, [['Error en los datos enviados', 'warning']], $data);
             }
         } catch (\Exception $e) {
+            log_message('error', '[Login] ' . $e->getMessage());
             return $this->redirectView(null, [['Error en los datos enviados', 'danger']], $data);
         }
     }
     public function forgotPassword()
     {
         $accessGranted = grantAccess();
-        if ($accessGranted) return $accessGranted;
+        if ($accessGranted)
+            return $accessGranted;
         return view('auth/forgot');
     }
     public function register()
     {
         $accessGranted = grantAccess();
-        if ($accessGranted) return $accessGranted;
+        if ($accessGranted)
+            return $accessGranted;
         return view('auth/register');
     }
     public function logout()
