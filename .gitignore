@@ -3,6 +3,9 @@
 #-------------------------
 # events img
 public/assets/images/events/
+# authors img
+public/assets/images/authors
+
 
 # OS X
 .DS_Store
