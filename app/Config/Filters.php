@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Filters\AuthorPermissionFilter;
+use App\Filters\SessionUserEventos;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -42,6 +44,8 @@ class Filters extends BaseFilters
         'SessionAdmin' => SessionAdmin::class,
         'SessionPagos' => SessionPagos::class,
         'SessionProservi' => SessionProservi::class,
+        'SessionUserEventos' => SessionUserEventos::class,
+        "AuthorPermission" => AuthorPermissionFilter::class,
     ];
 
     /**
@@ -126,6 +130,12 @@ class Filters extends BaseFilters
         "SessionProservi" => [
             "before" => [
                 "proservi/*",
+            ],
+        ],
+        "SessionUserEventos" => [
+            "before" => [
+                'user-event',
+                "user-event/*",
             ],
         ],
     ];

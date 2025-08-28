@@ -5,6 +5,7 @@ class RolesOptions
     const AdministradorDePagos = 2;
     const AdministradorProservi = 3;
     const UsuarioPublico = 4;
+    const UsuarioEventos = 5;
 }
 
 class ModulosAdmin
@@ -22,6 +23,7 @@ class ModulosAdmin
     const PAGOS_RECHAZADOS = 'PAGOS_RECHAZADOS';
     const PAGOS_INCOMPLETOS = 'PAGOS_INCOMPLETOS';
     const USERS = 'USERS';
+    const USERS_EVENTS = 'USERS_EVENTS';
     const INSCRIPCIONES = 'INSCRIPCIONES';
     const INSCRIPCIONES_ELIMINADAS = 'INSCRIPCIONES_ELIMINADAS';
     const MIS_RECAUDACIONES = 'MIS_RECAUDACIONES';
@@ -45,6 +47,12 @@ class ModulosAdminPagos
     const PAGOS_INCOMPLETOS = 'PAGOS_INCOMPLETOS';
     const USERS = 'USERS';
     const MIS_RECAUDACIONES = 'MIS_RECAUDACIONES';
+}
+
+class ModuloProservi{
+
+    const DASHBOARD = 'DASHBOARD';
+    const USERS = 'USERS';
 }
 
 class PaymentStatus
@@ -163,11 +171,13 @@ if (!function_exists('getListRolesOptions')) {
     {
         switch ($rol) {
             case RolesOptions::AdminPrincipal:
-                return 'Admin Principal';
+                return '<span class="badge badge-info">Admin Principal</span>';
             case RolesOptions::AdministradorDePagos:
-                return 'Administrador de Pagos';
+                return '<span class="badge badge-success">Usuario de Pagos</span>';
             case RolesOptions::AdministradorProservi:
-                return 'Usuario Proservi';
+                return '<span class="badge badge-primary">Usuario Proservi</span>';
+            // case RolesOptions::UsuarioEventos:
+            //     return '<span class="badge bg-secondary">Usuario Eventos</span>';
             default:
                 return null; // Estado inválido
         }

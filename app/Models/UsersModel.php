@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use RolesOptions;
 
 class UsersModel extends Model
 {
@@ -10,7 +11,7 @@ class UsersModel extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
     protected $protectFields = false;
     protected $allowedFields = [];
 
@@ -46,9 +47,25 @@ class UsersModel extends Model
 
     public function usersAll()
     {
-        return $this->select('id,rol_id, ic, first_name, last_name, phone_number, email, address')
-            ->where('rol_id !=', 1)
-            ->where('rol_id !=', 4)
+        return $this->select('users.id, users.rol_id, users.ic, users.first_name, users.last_name, users.phone_number, users.email, users.address, authors.id as author_id, authors.name as author_name')
+            ->join('user_author_permissions', 'user_author_permissions.user_id = users.id', 'left')
+            ->join('authors', 'authors.id = user_author_permissions.author_id', 'left')
+            ->where('users.rol_id !=', RolesOptions::AdminPrincipal)
+            ->where('users.rol_id !=', RolesOptions::UsuarioPublico)
+            ->where('users.rol_id !=', RolesOptions::UsuarioEventos)
+            ->findAll();
+    }
+
+
+    public function usersEvents()
+    {
+        return $this->select('users.id, users.rol_id, users.ic, users.first_name, users.last_name, users.phone_number, users.email, users.address, authors.id as author_id, authors.name as author_name')
+            ->join('user_author_permissions', 'user_author_permissions.user_id = users.id', 'left')
+            ->join('authors', 'authors.id = user_author_permissions.author_id', 'left')
+            ->where('users.rol_id !=', RolesOptions::AdminPrincipal)
+            ->where('users.rol_id !=', RolesOptions::UsuarioPublico)
+            ->where('users.rol_id !=', RolesOptions::AdministradorDePagos)
+            ->where('users.rol_id !=', RolesOptions::AdministradorProservi)
             ->findAll();
     }
 

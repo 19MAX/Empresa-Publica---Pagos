@@ -16,10 +16,10 @@ function grantAccess(int $rol = null)
                     return redirect()->to(base_url("admin/dashboard"));
                 case RolesOptions::AdministradorDePagos:
                     return redirect()->to(base_url("punto/pago"));
-                // case RolesOptions::AdministradorDeEventos:
-                //     return redirect()->to(base_url("eventos/dashboard"));
-                // case RolesOptions::UsuarioPublico:
-                //     return redirect()->to(base_url("public/dashboard"));
+                case RolesOptions::AdministradorProservi:
+                    return redirect()->to(base_url("proservi/reportes"));
+                case RolesOptions::UsuarioEventos:
+                    return redirect()->to(base_url("user-event"));
                 default:
                     session()->destroy();
                     return redirect()->to(base_url("/login"));

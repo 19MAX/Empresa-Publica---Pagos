@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/admin_layout'); ?>
 
 <?= $this->section('title') ?>
-Usuarios
+Usuarios de eventos
 <?= $this->endSection() ?>
 
 <?= $this->section('css') ?>
@@ -12,11 +12,11 @@ Usuarios
 
 <div class="content-wrapper">
     <div class="content-header sty-one">
-        <h1 class="text-black"> Usuarios</h1>
+        <h1 class="text-black"> Usuarios de eventos</h1>
         <ol class="breadcrumb">
             <li><a href="#">Inicio</a></li>
             <li class="sub-bread"><i class="fa fa-angle-right"></i> Usuarios</li>
-            <li><i class="fa fa-angle-right"></i> Lista</li>
+            <li><i class="fa fa-angle-right"></i> Eventos</li>
         </ol>
     </div>
     <div class="content">
@@ -44,7 +44,7 @@ Usuarios
                                 <td><?= $user["phone_number"] ?></td>
                                 <td><?= $user["email"] ?></td>
                                 <td><?= $user["address"] ?></td>
-                                <td><?= getListRolesOptions($user["rol_id"]) ?></td>
+                                <td><span class="badge bg-black">Usuario con evento</span></td>
                                 <td>
                                     <div class="d-flex">
 
@@ -99,7 +99,7 @@ Usuarios
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url("admin/users/delete") ?>" id="formDelete" method="post">
+                    <form action="<?= base_url("admin/users-events/delete") ?>" id="formDelete" method="post">
                         <div class="row mb-3">
                             <div class="col">
                                 <p>Estas seguro de eliminar al usuario : <span class="text-danger"
@@ -129,7 +129,7 @@ Usuarios
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url("admin/users/recover_password") ?>" id="formRecover" method="post">
+                    <form action="<?= base_url("admin/users-events/recover_password") ?>" id="formRecover" method="post">
                         <div class="row mb-3">
                             <div class="col">
                                 <label>Contraseña</label>
@@ -182,7 +182,7 @@ Usuarios
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url("admin/users/update") ?>" id="formUpdate" method="post">
+                    <form action="<?= base_url("admin/users-events/update") ?>" id="formUpdate" method="post">
                         <div class="row mb-3">
                             <div class="col">
                                 <label>Numero de cédula</label>
@@ -274,47 +274,6 @@ Usuarios
                             </div>
                         </div>
 
-                        <!-- Fila para roles y autor -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>Roles de Usuario</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></div>
-                                    <select class="form-control" name="rol_id" id="rol_id_update">
-                                        <?php
-                                        $selectedRolId = (isset($last_data) && ($last_action ?? null) == 'update') ? display_data($last_data, 'rol_id') : '';
-                                        foreach (getRolesOptions() as $key => $value):
-                                            ?>
-                                            <option value="<?= $key ?>" <?= $key == $selectedRolId ? 'selected' : '' ?>>
-                                                <?= $value ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'update') ? display_data($validation, 'rol_id') : '' ?>
-                                </span>
-                            </div>
-
-                            <!-- Contenedor de autor para actualización -->
-                            <div class="col-md-6" id="author-container-update" style="display:none;">
-                                <label for="author_id_update">Autor asociado</label>
-                                <select id="author_id_update" class="form-control" name="author_id" style="width: 100%">
-                                    <option value="" disabled>Seleccione un autor</option>
-                                    <?php
-                                    $selectedAuthorId = (isset($last_data) && ($last_action ?? null) == 'update') ? display_data($last_data, 'author_id') : '';
-                                    foreach ($authors as $key => $author): ?>
-                                        <option value="<?= $author["id"] ?>" <?= $author["id"] == $selectedAuthorId ? 'selected' : '' ?>>
-                                            <?= $author["name"] ?>
-                                        </option>
-                                    <?php endforeach ?>
-                                </select>
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'update') ? display_data($validation, 'author_id') : '' ?>
-                                </span>
-                            </div>
-                        </div>
-
                         <input type="hidden" name="id" id="id_usuario"
                             value="<?= (isset($last_data) && ($last_action ?? null) == 'update') ? display_data($last_data, 'id') : '' ?>"
                             required>
@@ -324,185 +283,6 @@ Usuarios
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Cerrar</button>
                     <button form="formUpdate" type="submit" class="btn btn-success">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para agregar usuario -->
-    <div class="modal fade" id="addUserModal" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-2">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="addUserModalLabel">Agregar Usuario</h4>
-                    <button type="button" class="close close-modal" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url("admin/users/add") ?>" id="formAddUser" method="post">
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label>Numero de cédula</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i>
-                                    </div>
-                                    <input type="text" name="ic" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'ic') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'ic') : '' ?>
-                                </span>
-                            </div>
-
-                            <div class="col">
-                                <label>Nombre</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></div>
-
-                                    <input type="text" name="first_name" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'first_name') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'first_name') : '' ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label>Apellido</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                    <input type="text" name="last_name" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'last_name') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'last_name') : '' ?>
-                                </span>
-                            </div>
-
-                            <div class="col">
-                                <label>Teléfono</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></div>
-                                    <input type="text" name="phone_number" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'phone_number') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'phone_number') : '' ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label>Correo Electrónico</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                    </div>
-                                    <input type="email" name="email" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'email') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'email') : '' ?>
-                                </span>
-                            </div>
-
-                            <div class="col">
-                                <label>Dirección</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    </div>
-                                    <input type="text" name="address" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'address') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'address') : '' ?>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label>Contraseña</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i>
-                                    </div>
-                                    <input type="text" name="password" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'password') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'password') : '' ?>
-                                </span>
-                            </div>
-
-                            <div class="col">
-                                <label>Repita la contraseña</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-repeat" aria-hidden="true"></i>
-                                    </div>
-                                    <input type="password" name="password_repeat" class="form-control"
-                                        value="<?= (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'password_repeat') : '' ?>"
-                                        required>
-                                </div>
-
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'password_repeat') : '' ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>Roles de Usuario</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></div>
-                                    <select class="form-control" name="rol_id" id="rol_id">
-                                        <?php
-                                        $selectedRolId = (isset($last_data) && ($last_action ?? null) == 'insert') ? display_data($last_data, 'rol_id') : '';
-                                        foreach (getRolesOptions() as $key => $value): ?>
-                                            <option value="<?= $key ?>" <?= $key == $selectedRolId ? 'selected' : '' ?>>
-                                                <?= $value ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'rol_id') : '' ?>
-                                </span>
-                            </div>
-
-                            <!-- Contenedor de autor (oculto por defecto) -->
-                            <div class="col-md-6" id="author-container" style="display:none;">
-                                <label for="author_id">Autor asociado</label>
-                                <select id="author_id" class="form-control" name="author_id" style="width: 100%">
-                                    <option value="" disabled selected>Seleccione un autor</option>
-                                    <?php foreach ($authors as $key => $author): ?>
-                                        <option value="<?= $author["id"] ?>"><?= $author["name"] ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <span class="label m-0 p-0 text-danger">
-                                    <?= (isset($validation) && ($last_action ?? null) == 'insert') ? display_data($validation, 'author_id') : '' ?>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Cerrar</button>
-                    <button form="formAddUser" type="submit" class="btn btn-success">Agregar</button>
                 </div>
             </div>
         </div>
@@ -519,55 +299,6 @@ Usuarios
 
 <!-- Script para controlar visibilidad -->
 <script>
-    // Script para controlar visibilidad en modal de agregar
-    function initAuthorFieldToggle() {
-        const rolSelect = document.getElementById("rol_id");
-        const authorContainer = document.getElementById("author-container");
-        const authorSelect = document.getElementById("author_id");
-
-        function toggleAuthorField() {
-            if (rolSelect.value == "3") { // si es Proservi
-                authorContainer.style.display = "block";
-                authorSelect.setAttribute("required", "required");
-            } else {
-                authorContainer.style.display = "none";
-                authorSelect.removeAttribute("required");
-                authorSelect.value = ""; // limpiar selección
-            }
-        }
-
-        // Ejecutar al inicio y cuando cambie el rol
-        toggleAuthorField();
-        rolSelect.addEventListener("change", toggleAuthorField);
-    }
-
-    // Script para controlar visibilidad en modal de actualizar
-    function initAuthorFieldToggleUpdate() {
-        const rolSelectUpdate = document.getElementById("rol_id_update");
-        const authorContainerUpdate = document.getElementById("author-container-update");
-        const authorSelectUpdate = document.getElementById("author_id_update");
-
-        function toggleAuthorFieldUpdate() {
-            if (rolSelectUpdate.value == "3") { // si es Proservi
-                authorContainerUpdate.style.display = "block";
-                authorSelectUpdate.setAttribute("required", "required");
-            } else {
-                authorContainerUpdate.style.display = "none";
-                authorSelectUpdate.removeAttribute("required");
-                authorSelectUpdate.value = ""; // limpiar selección
-            }
-        }
-
-        // Ejecutar al inicio y cuando cambie el rol
-        toggleAuthorFieldUpdate();
-        rolSelectUpdate.addEventListener("change", toggleAuthorFieldUpdate);
-    }
-
-    // Inicializar cuando cargue el DOM
-    document.addEventListener("DOMContentLoaded", function () {
-        initAuthorFieldToggle();
-        initAuthorFieldToggleUpdate();
-    });
 
     // JavaScript/jQuery para manejar el clic en el botón de eliminar
     $(document).ready(function () {
@@ -594,8 +325,6 @@ Usuarios
             let userNumber = $(this).data('user-phone_number');
             let userEmail = $(this).data('user-email');
             let userAddress = $(this).data('user-address');
-            let userRol = $(this).data('user-rol_id');
-            let userAuthor = $(this).data('user-author_id'); // Nuevo: obtener autor asignado
 
             $('#id_usuario').val(userId);
             $('#ic').val(userIc);
@@ -604,17 +333,7 @@ Usuarios
             $('#phone_number').val(userNumber);
             $('#email').val(userEmail);
             $('#address').val(userAddress);
-            $('#rol_id_update').val(userRol);
 
-            // Configurar el autor si existe
-            if (userAuthor) {
-                $('#author_id_update').val(userAuthor);
-            } else {
-                $('#author_id_update').val('');
-            }
-
-            // Activar la función de toggle para mostrar/ocultar campo de autor
-            initAuthorFieldToggleUpdate();
         });
 
         // Mostrar el modal de agregar si es necesario

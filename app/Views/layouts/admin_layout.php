@@ -225,13 +225,17 @@
                         </ul>
                     </li>
                     <li
-                        class="treeview <?= (isset($modulo) && in_array($modulo, [ModulosAdmin::USERS])) ? 'active' : '' ?>">
+                        class="treeview <?= (isset($modulo) && in_array($modulo, [ModulosAdmin::USERS,ModulosAdmin::USERS_EVENTS])) ? 'active' : '' ?>">
                         <a href="#"> <i class="fa fa-user-o"></i> <span>Usuarios</span> <span
                                 class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
                         <ul class="treeview-menu">
                             <li
                                 class="<?= (isset($modulo) && checkActiveModule($modulo, ModulosAdmin::USERS)) ? 'active' : '' ?>">
                                 <a href="<?= base_url('admin/users'); ?>">Lista</a>
+                            </li>
+                            <li
+                                class="<?= (isset($modulo) && checkActiveModule($modulo, ModulosAdmin::USERS_EVENTS)) ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/users-events'); ?>">Eventos</a>
                             </li>
                         </ul>
                     </li>

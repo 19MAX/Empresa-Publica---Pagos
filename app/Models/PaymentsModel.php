@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\PermissionService;
 use CodeIgniter\Model;
 use PaymentStatus;
 
@@ -670,6 +671,100 @@ class PaymentsModel extends Model
 
         $query = $builder->get();
         return $query->getResultArray();
+    }
+
+    public function getRecaudadoWithPermissions($userId)
+    {
+        $permissionService = new PermissionService();
+        $allowedEvents = $permissionService->getUserAllowedEvents($userId);
+
+        if (empty($allowedEvents)) {
+            return [];
+        }
+
+        // Extraer IDs de eventos permitidos
+        $allowedEventIds = array_column($allowedEvents, 'id');
+
+        // Obtener el valor de 'additional_charge'
+        $configModel = new ConfigModel();
+        $additionalCharge = $configModel->where('key', 'additional_charge')->first();
+        $additionalChargeValue = floatval($additionalCharge['value']);
+
+        // Construir la consulta
+        $builder = $this->select('
+            payments.id AS payment_id,
+            (payments.amount_pay - ' . $additionalChargeValue . ') AS amount_pay,
+            payments.date_time_payment,
+            payments.payment_cod AS codigo,
+            payments.num_autorizacion AS num_autorizacion,
+            registrations.full_name_user AS participante_name,
+            registrations.ic AS participante_cedula,
+            registrations.address AS participante_direccion,
+            registrations.phone AS participante_telefono,
+            registrations.email AS participante_email,
+            registrations.event_name AS event_name,
+            events.id AS event_cod,
+            authors.name AS author_name,
+            (registrations.monto_category - ' . $additionalChargeValue . ') AS precio,
+            payment_methods.method_name AS method_pago
+        ');
+
+        $builder->join('registrations', 'payments.id_register = registrations.id');
+        $builder->join('events', 'registrations.event_cod = events.id');
+        $builder->join('authors', 'events.author_id = authors.id');
+        $builder->join('payment_methods', 'payment_methods.id = payments.payment_method_id');
+
+        // Filtrar solo por eventos permitidos
+        $builder->whereIn('events.id', $allowedEventIds);
+        $builder->where('payments.payment_status', 2);
+        $builder->orderBy('payments.date_time_payment', 'DESC');
+
+        return $builder->get()->getResultArray();
+    }
+
+    public function getRecaudadoWithEvent($userId)
+    {
+        $permissionService = new PermissionService();
+        $allowedEvents = $permissionService->getUserEvents($userId);
+
+
+        $id_event=$allowedEvents[0]['id'];
+
+        // Obtener el valor de 'additional_charge'
+        $configModel = new ConfigModel();
+        $additionalCharge = $configModel->where('key', 'additional_charge')->first();
+        $additionalChargeValue = floatval($additionalCharge['value']);
+
+        // Construir la consulta
+        $builder = $this->select('
+            payments.id AS payment_id,
+            (payments.amount_pay - ' . $additionalChargeValue . ') AS amount_pay,
+            payments.date_time_payment,
+            payments.payment_cod AS codigo,
+            payments.num_autorizacion AS num_autorizacion,
+            registrations.full_name_user AS participante_name,
+            registrations.ic AS participante_cedula,
+            registrations.address AS participante_direccion,
+            registrations.phone AS participante_telefono,
+            registrations.email AS participante_email,
+            registrations.event_name AS event_name,
+            events.id AS event_cod,
+            authors.name AS author_name,
+            (registrations.monto_category - ' . $additionalChargeValue . ') AS precio,
+            payment_methods.method_name AS method_pago
+        ');
+
+        $builder->join('registrations', 'payments.id_register = registrations.id');
+        $builder->join('events', 'registrations.event_cod = events.id');
+        $builder->join('authors', 'events.author_id = authors.id');
+        $builder->join('payment_methods', 'payment_methods.id = payments.payment_method_id');
+
+        // Filtrar solo por eventos permitidos
+        $builder->where('events.id', $id_event);
+        $builder->where('payments.payment_status', 2);
+        $builder->orderBy('payments.date_time_payment', 'DESC');
+
+        return $builder->get()->getResultArray();
     }
 
 }

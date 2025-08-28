@@ -54,9 +54,11 @@
     <div class="wrapper boxed-wrapper">
         <header class="main-header">
             <!-- Logo -->
-            <a href="<?=base_url('proservi/reportes')?>" class="logo blue-bg">
-                <span class="logo-mini"><img class="img-fluid" style="width:35px; border-radius:10px;"  src="<?= base_url("assets/images/icono-sin-fondo.png") ?>" alt=""></span>
-                <span class="logo-lg"><img style="width:120px;border-radius:10px;" src="<?= base_url("assets/images/logo-ep.png") ?>" alt=""></span> </a>
+            <a href="<?= base_url('proservi/reportes') ?>" class="logo blue-bg">
+                <span class="logo-mini"><img class="img-fluid" style="width:35px; border-radius:10px;"
+                        src="<?= base_url("assets/images/icono-sin-fondo.png") ?>" alt=""></span>
+                <span class="logo-lg"><img style="width:120px;border-radius:10px;"
+                        src="<?= base_url("assets/images/logo-ep.png") ?>" alt=""></span> </a>
             <nav class="navbar blue-bg navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <ul class="nav navbar-nav pull-left">
@@ -66,9 +68,11 @@
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle"
-                                data-toggle="dropdown"><span class="hidden-xs"><?= session('first_name') . ' ' . session('last_name') ?></span> </a>
+                                data-toggle="dropdown"><span
+                                    class="hidden-xs"><?= session('first_name') . ' ' . session('last_name') ?></span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <!-- <li><a href="<?= base_url('punto/pago/user')?>"><i class="icon-profile-male"></i> Mi perfil</a></li> -->
+                                <!-- <li><a href="<?= base_url('punto/pago/user') ?>"><i class="icon-profile-male"></i> Mi perfil</a></li> -->
                                 <li role="separator" class="divider"></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<?= base_url("logout") ?>"><i class="fa fa-power-off"></i>Cerrar Sesión</a>
@@ -85,17 +89,17 @@
 
                 <div class="user-panel">
                     <div class="image text-center">
-                        <img src="<?=base_url('assets/images/user_pagos.jpg')?>" class="img-circle"
-                            alt="User Image">
+                        <img src="<?= base_url('assets/images/user_pagos.jpg') ?>" class="img-circle" alt="User Image">
                     </div>
                     <div class="info text-black">
                         <p><?= session('first_name') . ' ' . session('last_name') ?></p> <a
-                            href="<?= base_url("logout") ?>" title="Cerrar Sesión"><i class="fa fa-lg fa-power-off"></i></a>
+                            href="<?= base_url("logout") ?>" title="Cerrar Sesión"><i
+                                class="fa fa-lg fa-power-off"></i></a>
                     </div>
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
 
-                    <li class="header active">
+                    <li class="header">
 
                         <a class="px-0 py-1" href="<?= base_url("/proservi/reportes") ?>">
                             <i class="fa fa-usd" aria-hidden="true"></i><span>Reporte de inscripciones</span> <span
@@ -103,6 +107,10 @@
                         </a>
                     </li>
 
+                    <li
+                        class="  <?= (isset($modulo) && ModuloProservi::USERS) ? 'active' : '' ?>">
+                        <a href="<?=base_url("proservi/users")?>"> <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Agregar usuario</span></a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar -->

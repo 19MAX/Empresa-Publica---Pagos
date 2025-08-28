@@ -40,12 +40,13 @@ class LoginController extends BaseController
         $email = $this->request->getPost('login-email');
         $password = $this->request->getPost('login-password');
         $loginModel = new LoginModel();
+
         $data = [
             'email' => trim($email),
             'password' => trim($password)
         ];
-        try {
 
+        try {
             $validation = \Config\Services::validation();
             $validation->setRules(
                 [
@@ -59,11 +60,13 @@ class LoginController extends BaseController
                     ],
                 ]
             );
+
             if ($validation->run($data)) {
-
-                // Buscar al usuario por su correo electrónico
-                $user = $loginModel->where('email', $email)->first();
-
+                // Buscar al usuario por su correo electrónico con información de autor
+                $user = $loginModel->select('users.*, user_author_permissions.author_id')
+                    ->join('user_author_permissions', 'user_author_permissions.user_id = users.id', 'left')
+                    ->where('users.email', $email)
+                    ->first();
 
                 if ($user['rol_id'] == RolesOptions::UsuarioPublico) {
                     throw new \RuntimeException('Error de autorización ' . $user['first_name']);
@@ -72,15 +75,23 @@ class LoginController extends BaseController
                 if ($user) {
                     // Verificar la contraseña
                     if (password_verify($password, $user['password'])) {
-                        // Iniciar sesión exitosa
-                        $session = session();
-                        $session->set([
+                        // Preparar datos de sesión base
+                        $sessionData = [
                             'id' => $user['id'],
                             'user_email' => $user['email'],
                             'first_name' => $user['first_name'],
                             'last_name' => $user['last_name'],
                             'rol' => $user['rol_id']
-                        ]);
+                        ];
+
+                        // Agregar author_id si es usuario Proservi
+                        if ($user['rol_id'] == RolesOptions::AdministradorProservi && !empty($user['author_id'])) {
+                            $sessionData['author_id'] = $user['author_id'];
+                        }
+
+                        // Iniciar sesión exitosa
+                        $session = session();
+                        $session->set($sessionData);
 
                         // Redirigir al usuario según su rol
                         switch ($user['rol_id']) {
@@ -90,8 +101,8 @@ class LoginController extends BaseController
                                 return redirect('punto/pago');
                             case RolesOptions::AdministradorProservi:
                                 return redirect('proservi/reportes');
-                            // case RolesOptions::UsuarioPublico:
-                            //     return redirect('public/dashboard');
+                            case RolesOptions::UsuarioEventos:
+                                return redirect('user-event');
                             default:
                                 return redirect('login');
                         }
@@ -99,7 +110,7 @@ class LoginController extends BaseController
                         return $this->redirectView(null, [['Datos inválidos', 'danger']], $data);
                     }
                 } else {
-                    return $this->redirectView(null, [['Correo electrónico no registrado', 'danger']], $data);
+                    return $this->redirectView(null, [['Datos inválidos', 'danger']], $data);
                 }
             } else {
                 return $this->redirectView($validation, [['Error en los datos enviados', 'warning']], $data);

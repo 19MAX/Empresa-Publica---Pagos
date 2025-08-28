@@ -78,6 +78,13 @@ $routes->group('admin', static function ($routes) {
         });
     });
 
+    $routes->group('users-events', static function ($authors) {
+        $authors->get('/', 'Admin\UsersEventsController::index');
+        $authors->post('add', 'Admin\UsersEventsController::add');
+        $authors->post('update', 'Admin\UsersEventsController::update');
+        $authors->post('delete', 'Admin\UsersEventsController::delete');
+    });
+
     $routes->group('users', static function ($categories) {
         $categories->get('/', 'Admin\UsersController::index');
         $categories->post('add', 'Admin\UsersController::add');
@@ -149,12 +156,26 @@ $routes->group('punto/pago', static function ($routes) {
     // $routes->get('verificarDepositoIncompleto/(:num)', 'Payments\PocesosDepController::verificarDepositoIncompleto/$1');
 });
 
-// ADMIN
-$routes->group('proservi', static function ($routes) {
+// PROSERVI
+$routes->group('proservi',  ['filter' => 'AuthorPermission'], static function ($routes) {
 
     $routes->get('reportes', 'Proservi\ReportesController::index');
 
+    $routes->group('users', static function ($categories) {
+        $categories->get('/', 'Proservi\UsersController::index');
+        $categories->post('add', 'Proservi\UsersController::add');
+        $categories->post('update', 'Proservi\UsersController::update');
+        $categories->post('delete', 'Proservi\UsersController::delete');
+        $categories->post('recover', 'Proservi\UsersController::recover');
+
+    });
+
 });
+
+$routes->group('user-event', static function ($routes) {
+    $routes->get('/', 'UserEvent\ReporteController::index');
+});
+
 
 //Pdf
 $routes->get('pdf/(:hash)', 'Payments\InscripcionesController::showPDF/$1');

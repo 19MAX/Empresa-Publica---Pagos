@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Controllers\Proservi;
+namespace App\Controllers\UserEvent;
 
 use App\Controllers\BaseController;
 use App\Models\EventsModel;
 use App\Models\PaymentsModel;
 use App\Models\UsersModel;
-use RolesOptions;
-// use ModulosAdmin;
+use CodeIgniter\HTTP\ResponseInterface;
 
-class ReportesController extends BaseController
+class ReporteController extends BaseController
 {
-
     private $usersModel;
     private $paymentsModel;
     private $eventsModel;
@@ -35,21 +33,14 @@ class ReportesController extends BaseController
     public function index()
     {
         $userId = session('id');
-        $userRol = session('rol');
 
         $flashValidation = session()->getFlashdata('flashValidation');
         $flashMessages = session()->getFlashdata('flashMessages');
         $last_data = session()->getFlashdata('last_data');
         $last_action = session()->getFlashdata('last_action');
 
-        // Determinar si necesita filtros de permisos
-        if ($userRol == 1) {
-            // Super admin ve todo
-            $all_inscriptions = $this->paymentsModel->getRecaudado();
-        } else {
-            // Otros usuarios ven según sus permisos
-            $all_inscriptions = $this->paymentsModel->getRecaudadoWithPermissions($userId);
-        }
+        // Otros usuarios ven según sus permisos
+        $all_inscriptions = $this->paymentsModel->getRecaudadoWithEvent($userId);
 
         $data = [
             'users' => $all_inscriptions,
@@ -59,7 +50,6 @@ class ReportesController extends BaseController
             'flashMessages' => $flashMessages,
         ];
 
-        return view("proservi/reportes", $data);
+        return view("userEventos/index", $data);
     }
-
 }
