@@ -5,8 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
+    <meta name="description"
+        content="EventoPagos: Inscripciones y pagos de eventos culturales y académicos de diferentes autores. Regístrate fácilmente y paga en línea, depósito o en puntos autorizados.">
+    <meta name="keywords"
+        content="eventos, autores, inscripciones, pagos en línea, depósito, puntos de recaudación, Ecuador">
+    <meta property="og:title" content="EventoPagos - Inscripción y Pago de Eventos de Autores">
+    <meta property="og:description"
+        content="Descubre eventos organizados por diferentes autores. Inscríbete y paga de forma segura con múltiples métodos de pago.">
+    <meta property="og:url" content="https://eventopagos.site/">
+    <meta property="og:type" content="website">
+
     <title>Inicio</title>
-    <link rel="icon" href="<?= base_url("assets/images/icono.jpeg"); ?>" type="image/jpeg">
+    <!-- <link rel="icon" href="<?= base_url("assets/images/icono.jpeg"); ?>" type="image/jpeg"> -->
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url("assets/css/styles.css") ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -998,7 +1008,7 @@
 
     <!-- Scripts -->
     <script src="<?= base_url("assets/js/authors.js") ?>"></script>
-    <script src="<?= base_url("assets/js/cursor-manager.js") ?>"></script>
+    <!-- <script src="<?= base_url("assets/js/cursor-manager.js") ?>"></script> -->
 </body>
 
 </html>
