@@ -9,7 +9,7 @@
     <meta name="keywords" content="eventos, autores, inscripciones, pagos en línea, depósito, puntos de recaudación, Ecuador">
     <meta property="og:title" content="EventoPagos - Inscripción y Pago de Eventos de Autores">
     <meta property="og:description" content="Descubre eventos organizados por diferentes autores. Inscríbete y paga de forma segura con múltiples métodos de pago.">
-    <meta property="og:url" content="https://eventopagos.site/">
+    <meta property="og:url" content="<?=base_url("/")?>">
     <meta property="og:type" content="website">
 
     <title>Inicio</title>

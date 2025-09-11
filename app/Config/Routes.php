@@ -202,3 +202,6 @@ $routes->get('logout', 'Auth\LoginController::logout');
 $routes->post('validate_login', 'Auth\LoginController::login');
 // $routes->get('forgotPassword', 'Auth\LoginController::forgotPassword');
 // $routes->get('register', 'Auth\LoginController::register');
+
+//Sitemap
+$routes->get('sitemap.xml', 'SitemapController::index');
