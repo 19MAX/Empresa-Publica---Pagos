@@ -186,7 +186,8 @@
                     <p>Has sido registrado exitosamente en el evento.</p>
 
                     <div class="alert-payment p-0">
-                        <p>Tu inscripción se completará cuando verifiquemos tu pago</p>
+                        <p style="margin-bottom: 5px;">Tu inscripción se completará cuando realices tu pago, tienes un tiempo limite de 48 horas.</p>
+                        <h1>Si no completas el pago, sera borrado del registro </h1>
                     </div>
 
                     <table class="details-table">

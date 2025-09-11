@@ -103,15 +103,15 @@ document.addEventListener("DOMContentLoaded", function () {
       if (data.success) {
         $("#modalRegistroUsuario").modal("hide");
         $("#modalInscripcion").modal("show");
-        Swal.fire({
-          title: "<strong>Usuario registrado correctamente!</strong>",
-          icon: "success",
-          html: `
-                    <p>Ahora puede inscribirse al evento.</p>
-                `,
-          showCloseButton: true,
-          confirmButtonText: 'Ok',
-        });
+        // Swal.fire({
+        //   title: "<strong>Usuario registrado correctamente!</strong>",
+        //   icon: "success",
+        //   html: `
+        //             <p>Ahora puede inscribirse al evento.</p>
+        //         `,
+        //   showCloseButton: true,
+        //   confirmButtonText: 'Ok',
+        // });
       } else {
         let errorMessage = "Error al registrar el usuario.";
         if (typeof data.message === 'object') {
