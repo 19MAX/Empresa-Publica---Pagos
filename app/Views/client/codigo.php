@@ -72,6 +72,16 @@
         margin-top: 15px;
       }
 
+      .alert-success {
+        background-color: #f4ffe5;
+        border: 1px solid #1dc317;
+        color: #1dc317;
+        border-radius: 8px;
+        padding: 10px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+
       .btn {
         display: inline-block;
         background-color: #0c244b;
@@ -80,7 +90,10 @@
         text-decoration: none;
         border-radius: 6px;
         font-weight: bold;
-        margin-top: 15px;
+        margin: 15px auto 0 auto; /* Centramos y separamos de los bordes */
+        text-align: center;
+        font-size: 0.8rem;
+        max-width: 90%; /* Evita que toque los bordes del contenedor */
       }
 
       .payment-cards {
@@ -143,42 +156,44 @@
       </div>
 
       <div class="content">
-        <p>
+        <p style="text-align: left">
           Hola <strong><?= $user ?></strong>,
         </p>
 
-        <p>
+        <p style="text-align: left">
           Has realizado tu <strong>pre-registro</strong> para el evento
           <span class="highlight-box"><?= $evento ?></span>
           en la categoría
-          <span class="highlight-box"><?= $categoria ?></span>. El monto a
+          <span class="highlight-box"><?= $categoria ?></span><br />El monto a
           cancelar es
-          <span class="highlight-box">$<?= number_format($precio, 2) ?></span
-          ><br />
-          Tu código de pago es
-          <span class="highlight-box"><?= $codigoPago ?></span>
+          <span class="highlight-box">$<?= number_format($precio, 2) ?></span>
         </p>
 
+        Tu código de pago es
+        <span class="highlight-box"><?= $codigoPago ?></span>
         <div class="alert">
           Tu inscripción se completará cuando realices el pago.<br />
           Tienes 48 horas para hacerlo.
         </div>
 
-        <p>
+        <div>
           <a
             href="<?= base_url('?modal=metodo&codigoPago=' . $codigoPago) ?>"
             class="btn"
           >
             COMPLETAR INSCRIPCIÓN
           </a>
-        </p>
+        </div>
 
-        <h3 style="text-align: center; color: #0c244b; margin-bottom: 8px">
-          Videos de cómo pagar
-        </h3>
-        <p
+        <div class="alert-success">
+          Te recomendamos pagar con <strong>tarjeta</strong> o en
+          <strong>puntos físicos</strong> para que tu inscripción se confirme de
+          inmediato.
+        </div>
+
+        <!-- <p
           style="
-            text-align: center;
+            text-align: left;
             color: #555;
             font-size: 0.95rem;
             margin: 0 0 15px;
@@ -187,26 +202,38 @@
           Te recomendamos pagar con <strong>tarjeta</strong> o en
           <strong>puntos físicos</strong> para que tu inscripción se confirme de
           inmediato.
-        </p>
+        </p> -->
+        <h3 style="text-align: left; color: #0c244b; margin-bottom: 8px">
+          ¿Cómo pagar?
+        </h3>
 
         <div class="payment-cards">
           <!-- Pago con tarjeta -->
-          <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="vertical-align: middle;">
+          <a
+            href="https://www.youtube.com/watch?v=tkv-ai0Grno"
+            class="payment-card"
+          >
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              style="vertical-align: middle"
+            >
               <tr>
-                <td style="vertical-align: middle;">
+                <td style="vertical-align: middle">
                   <strong>💳 Pago con tarjeta</strong><br />
                   <span class="payment-subtext">
                     Confirma tu inscripción de inmediato
                   </span>
                 </td>
-                <td align="right" style="vertical-align: middle; width: 20px;">
+                <td align="right" style="vertical-align: middle; width: 20px">
                   <img
                     src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
                     alt="→"
                     width="14"
                     height="14"
-                    style="display: block;"
+                    style="display: block"
                   />
                 </td>
               </tr>
@@ -214,22 +241,31 @@
           </a>
 
           <!-- Pago en efectivo -->
-          <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="vertical-align: middle;">
+          <a
+            href="https://www.youtube.com/watch?v=tkv-ai0Grno"
+            class="payment-card"
+          >
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              style="vertical-align: middle"
+            >
               <tr>
-                <td style="vertical-align: middle;">
+                <td style="vertical-align: middle">
                   <strong>💵 Pago en efectivo</strong><br />
                   <span class="payment-subtext">
                     Confirma tu inscripción al instante
                   </span>
                 </td>
-                <td align="right" style="vertical-align: middle; width: 20px;">
+                <td align="right" style="vertical-align: middle; width: 20px">
                   <img
                     src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
                     alt="→"
                     width="14"
                     height="14"
-                    style="display: block;"
+                    style="display: block"
                   />
                 </td>
               </tr>
@@ -237,22 +273,31 @@
           </a>
 
           <!-- Depósito o transferencia -->
-          <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="vertical-align: middle;">
+          <a
+            href="https://www.youtube.com/watch?v=tkv-ai0Grno"
+            class="payment-card"
+          >
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              style="vertical-align: middle"
+            >
               <tr>
-                <td style="vertical-align: middle;">
+                <td style="vertical-align: middle">
                   <strong>🏦 Depósito o transferencia</strong><br />
                   <span class="payment-subtext">
                     Validación hasta 72 h hábiles
                   </span>
                 </td>
-                <td align="right" style="vertical-align: middle; width: 20px;">
+                <td align="right" style="vertical-align: middle; width: 20px">
                   <img
                     src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
                     alt="→"
                     width="14"
                     height="14"
-                    style="display: block;"
+                    style="display: block"
                   />
                 </td>
               </tr>
@@ -268,8 +313,8 @@
           target="_blank"
           style="color: #ffffff; text-decoration: none; font-weight: bold"
         >
-          Softec Apps
-        </a>. Todos los derechos reservados.
+          Softec Apps </a
+        >. Todos los derechos reservados.
       </div>
     </div>
   </body>
