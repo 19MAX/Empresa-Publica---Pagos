@@ -19,9 +19,24 @@ class Email extends BaseJob implements JobInterface
         $subject = $this->data['subject'];
         $message = $this->data['message'];
         $htmlContent = $this->data['htmlContent'];
-        $pdfFilename = $this->data['pdfFilename'] ?? 'document.pdf';
+        $pdfFilename = $this->data['pdfFilename'] ?? null;
         $paymentData = $this->data['paymentData'] ?? null; // Datos de pago si aplica
         try {
+
+            //No generar pdf y solo enviar el correo
+
+            if (empty($pdfFilename)) {
+                $email = service('email', null, false);
+                $email->setTo($to);
+                $email->setSubject($subject);
+                $email->setMessage($message . '<br><br>' . $htmlContent); // Incluir contenido HTML
+                $result = $email->send(false);
+                if (!$result) {
+                    throw new Exception($email->printDebugger(['headers']));
+                }
+                return $result;
+            }
+
             // Generar PDF según el tipo de correo
             if ($this->data['emailType'] === 'send_email_facture' && $paymentData) {
                 // Generar el PDF de la factura

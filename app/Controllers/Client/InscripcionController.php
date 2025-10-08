@@ -324,11 +324,13 @@ class InscripcionController extends BaseController
             return $this->response->setJSON(['error' => true, 'message' => 'No se pudo registrar la inscripción']);
         }
 
+        $messageText = "Hola {$personaData['name']}, tu pre-registro fue exitoso. Usa el código {$codigoPago} para completar tu inscripción.";
+
         // Enviar correo electrónico a la cola
         $emailData = [
             'to' => $personaData['email'],
             'subject' => 'Código de pago',
-            'message' => 'Estimado ' . $personaData['name'] . " " . $personaData['surname'] . ', los detalles de su solicitud se encuentran en el documento adjunto. Su código de pago es: ' . $codigoPago,
+            'message' => $messageText,
             'htmlContent' => view('client/codigo', [
                 'user' => $personaData['name'] . " " . $personaData['surname'],
                 'codigoPago' => $codigoPago,
@@ -338,7 +340,7 @@ class InscripcionController extends BaseController
                 'categoria' => $event['category_name'],
                 'precio' => $event['cantidad_dinero'],
             ]),
-            'pdfFilename' => 'comprobante_registro.pdf',
+            // 'pdfFilename' => '',
             'emailType' => 'send_email_registro'
         ];
 
