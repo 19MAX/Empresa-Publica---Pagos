@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
     <meta name="description"
-        content="EventoPagos: Inscripciones y pagos de eventos culturales y académicos de diferentes autores. Regístrate fácilmente y paga en línea, depósito o en puntos autorizados.">
+        content="EventoPagos: Inscripciones y pagos de eventos académicos de diferentes autores. Regístrate fácilmente y paga en línea, depósito o en puntos autorizados.">
     <meta name="keywords"
         content="eventos, autores, inscripciones, pagos en línea, depósito, puntos de recaudación, Ecuador">
     <link rel="icon" href="<?=base_url("favicon.ico")?>">
