@@ -1,312 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprobante de Registro</title>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-registro de Evento</title>
     <style>
-        body {
-            font-family: Tahoma, Verdana, Segoe, sans-serif;
-            background-color: #F5F5F5;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background-color: #f4f6fa;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
 
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-            background-color: #F5F5F5;
-        }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
 
-        .header {
-            background-color: #0c244b;
-            color:white;
-            border-bottom: 2px solid #0c244b;
-            border-radius: 10px 10px 0 0;
-        }
+      .header {
+        background-color: #0c244b;
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+        border: none;
+      }
 
-        .header h1 {
-            color: #fff;
-        }
+      .header img {
+        max-width: 90px;
+        margin-bottom: 10px;
+      }
 
+      h1 {
+        font-size: 1.3rem;
+        margin: 0;
+      }
+
+      .content {
+        padding: 25px;
+        text-align: center;
+        border-left: 1px solid #0c244b;
+        border-right: 1px solid #0c244b;
+      }
+
+      p {
+        line-height: 1.5;
+        margin: 10px 0;
+      }
+
+      .highlight-box {
+        background-color: #e5e8ff;
+        color: #0c244b;
+        border-radius: 8px;
+        padding: 6px 10px;
+        display: inline-block;
+        font-weight: bold;
+        margin: 3px;
+      }
+
+      .alert {
+        background-color: #ffe5e5;
+        border: 1px solid #c3171b;
+        color: #c3171b;
+        border-radius: 8px;
+        padding: 10px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #0c244b;
+        color: white !important;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+
+      .payment-cards {
+        margin-top: 20px;
+      }
+
+      .payment-card {
+        border: 1px solid #d9e1f0;
+        border-radius: 8px;
+        background-color: #fafafa;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+
+      .payment-card strong {
+        color: #0c244b;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .payment-card a.video-link {
+        color: #c3171b;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .payment-cards {
+        margin-top: 20px;
+      }
+      .payment-cards {
+        margin-top: 10px;
+      }
+
+      .payment-card {
+        display: block;
+        text-decoration: none;
+        border: 1px solid #d9e1f0;
+        border-radius: 10px;
+        background-color: #ffffff;
+        padding: 15px 18px;
+        margin-bottom: 10px;
+        color: #0c244b;
+      }
+
+      .payment-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .payment-subtext {
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .icon-arrow {
+        width: 14px;
+        height: 14px;
+      }
+
+      .footer {
+        background-color: #0c244b;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 0.85rem;
+        border: none;
+      }
+
+      @media (max-width: 600px) {
         .content {
-            border: 2px solid #0c244b;
-            border-radius: 10px;
+          padding: 20px;
         }
-
-        .content-d {
-            padding: 20px;
-            background-color: #FFFFFF;
-            border-radius: 10px;
+        .btn {
+          display: block;
+          width: 100%;
+          text-align: center;
         }
-
-        .logo {
-            max-width: 105px;
-        }
-
-        h1 {
-            color: #c3171b;
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .details-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .details-table th,
-        .details-table td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-
-        .highlight {
-            color: #0c244b;
-            font-weight: bold;
-        }
-
-        .text-success {
-            color: green;
-        }
-
-        .alert-payment {
-            color: #c3171b;
-            background-color: #ffe5e5;
-            border: 2px solid #c3171b;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .space {
-            padding-bottom: 5%;
-            background-color: #F5F5F5;
-        }
-
-        .footer {
-            background-color: #0c244b;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* Estilos adaptados de Bootstrap */
-
-        .row {
-            width: 100%;
-            display: table;
-            table-layout: fixed;
-            border-spacing: 0;
-        }
-
-        .col {
-            display: table-cell;
-            padding-right: 0.75rem;
-            padding-left: 0.75rem;
-            vertical-align: top;
-        }
-
-        .col-6 {
-            width: 50%;
-        }
-
-        .col-12 {
-            width: 100%;
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                text-align: center;
-            }
-
-            .header img {
-                margin-bottom: 0px;
-            }
-
-            .header .bottom {
-                border-bottom: 2px solid #0c244b;
-            }
-
-            .col {
-                display: block;
-                width: 100%;
-            }
-        }
-
-        /* Padding general */
-
-        .p-0 {
-            padding: 0rem !important;
-        }
-
-        .p-2 {
-            padding: 0.5rem !important;
-        }
-
-        .pt-2,
-        .py-2 {
-            padding-top: 0.5rem !important;
-        }
-
-        .pb-2,
-        .py-2 {
-            padding-bottom: 0.5rem !important;
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <header>
-        <img src="<?= base_url('assets/images/email/bg_top.jpg');?>" alt="bg-top" style="width: 100%;">
-    </header>
-    <main style="background-color: #F5F5F5;">
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="<?= base_url('assets/images/email/logo-ep.png') ?>"
+          alt="Logo"
+        />
+        <h1>Pre-registro confirmado</h1>
+      </div>
 
-        <div class="container">
-            <div class="space"></div>
-            <div class="content">
-                <div class="header row">
-                    <div class="col bottom">
-                        <img src="<?=base_url('assets/images/email/logo-ep.png')?>" alt="Logo" class="logo">
-                    </div>
-                    <div class="col">
-                        <h1 class="pt-2 pb-2">Comprobante de Registro</h1>
-                    </div>
-                </div>
-                <div class="content-d">
-                    <p>Estimado(a),
-                        <strong>
-                            <?= $user ?>
-                        </strong>
-                    </p>
-                    <p>Has sido registrado exitosamente en el evento.</p>
+      <div class="content">
+        <p>
+          Hola <strong><?= $user ?></strong>,
+        </p>
 
-                    <div class="alert-payment p-0">
-                        <p style="margin-bottom: 5px;">Tu inscripción se completará cuando realices tu pago, tienes un tiempo limite de 48 horas.</p>
-                        <h1>Si no completas el pago, sera borrado del registro </h1>
-                    </div>
+        <p>
+          Has realizado tu <strong>pre-registro</strong> para el evento
+          <span class="highlight-box"><?= $evento ?></span>
+          en la categoría
+          <span class="highlight-box"><?= $categoria ?></span>.El monto a
+          cancelar es
+          <span class="highlight-box">$<?= number_format($precio, 2) ?></span
+          ><br />
+          Tu código de pago es
+          <span class="highlight-box"><?= $codigoPago ?></span>
+        </p>
 
-                    <table class="details-table">
-                        <tr>
-                            <th>Evento:</th>
-                            <td>
-                                <?= $evento ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Categoría:</th>
-                            <td>
-                                <?= $categoria ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Precio:</th>
-                            <td class="text-success">$
-                                <?= number_format($precio, 2) ?>
-                            </td>
-                        </tr>
-                        <!-- <tr>
-                            <th>Código de Pago:</th>
-                            <td class="highlight">
-                                <?= $codigoPago ?>
-                            </td>
-                        </tr> -->
-                        <!-- <tr>
-                            <th>Fecha Límite de Pago:</th>
-                            <td class="highlight">
-                                <?= $fechaLimitePago ?>
-                            </td>
-                        </tr> -->
-                        <tr>
-                            <th>Fecha de Emisión:</th>
-                            <td>
-                                <?= $fechaEmision ?>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- Nueva sección para subir el comprobante de pago -->
-                    <p style="text-align: center;">
-                        Con el código de pago <span class="highlight">
-                            <?= $codigoPago ?>
-                        </span>,
-                        puedes elegir tu método de pago (depósito o tarjeta) en el sistema para completar tu pago.
-                    </p>
-                    <p style="text-align: center;">Haz clic en <a style="border-bottom: 2px solid #0c244b; text-decoration: none; border-radius: 10px; color:#0c244b; padding: 5px 5px; background-color: #e5e8ff;"
-                        href="<?= base_url('?modal=metodo&codigoPago=' . $codigoPago) ?>"> <strong>PAGAR EN EL SISTEMA</strong></a></p>
-                    <hr>
-                    <h3 style="text-align: center;">Para depósitos o transferencias bancarias:</h3>
-                    <table class="details-table">
-                        <tr>
-                            <th>Banco:</th>
-                            <td style="background:#BC157C; color:white;">Banco de Guayaquil</td>
-                        </tr>
-                        <tr>
-                            <th>Tipo de Cuenta:</th>
-                            <td>Corriente</td>
-                        </tr>
-                        <tr>
-                            <th>Nombre:</th>
-                            <td>SOFTEC WEBSTORE S.A.S</td>
-                        </tr>
-                        <tr>
-                            <th>Cuenta Bancaria:</th>
-                            <td>0029421609</td>
-                        </tr>
-                        <tr>
-                            <th>RUC:</th>
-                            <td>0291525784001</td>
-                        </tr>
-                        <!-- <tr>
-                            <td colspan="2" style="text-align: center; font-weight: bold; padding-top: 15px;">Otra cuenta</td>
-                        </tr>
-                        <tr>
-                            <td>Banco:</td>
-                            <td>Banco Pichincha</td>
-                        </tr>
-                        <tr>
-                            <td>Tipo de Cuenta:</td>
-                            <td>Ahorros</td>
-                        </tr>
-                        <tr>
-                            <td>Nombre:</td>
-                            <td>SOFTEC WEBSTORE S A S</td>
-                        </tr>
-                        <tr>
-                            <td>Cuenta Bancaria:</td>
-                            <td>65656</td>
-                        </tr>
-                        <tr>
-                            <td>RUC:</td>
-                            <td>342434343535</td>
-                        </tr> -->
-                    </table>
+        <div class="alert">
+          Tu inscripción se completará cuando realices el pago.<br />
+          Tienes 48 horas para hacerlo.
+        </div>
 
-                    <h3 style="text-align: center;">Métodos de pago disponibles:</h3>
-                    <ul class="row" style="list-style-type: none; padding: 0;">
-                        <li class="col" style="padding-left: 0;"><strong>Depósito Bancario:</strong> Realiza un depósito
-                            en nuestra cuenta bancaria y luego
-                            sube tu comprobante en el sistema.</li>
-                        <li class="col" style="padding-left: 0;"><strong>Pago con Tarjeta:</strong> Usa PayPhone para
-                            pagar de manera segura con tu tarjeta
-                            de crédito o débito.</li>
-                    </ul>
+        <p>
+          <a
+            href="<?= base_url('?modal=metodo&codigoPago=' . $codigoPago) ?>"
+            class="btn"
+          >
+            COMPLETAR INSCRIPCIÓN
+          </a>
+        </p>
 
-                    <hr>
-                    <p style="text-align: center;">Gracias por tu participación.</p>
-                </div>
+        <h3 style="text-align: center; color: #0c244b; margin-bottom: 8px">
+          Videos de cómo pagar
+        </h3>
+        <p
+          style="
+            text-align: center;
+            color: #555;
+            font-size: 0.95rem;
+            margin: 0 0 15px;
+          "
+        >
+          Te recomendamos pagar con <strong>tarjeta</strong> o en
+          <strong>puntos físicos</strong> para que tu inscripción se confirme de
+          inmediato.
+        </p>
+
+        <div class="payment-cards">
+          <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
+            <div class="payment-info">
+              <div>
+                <strong>💳 Pago con tarjeta</strong><br />
+                <span class="payment-subtext"
+                  >Confirma tu inscripción de inmediato</span
+                >
+              </div>
+              <img
+                src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
+                alt="→"
+                class="icon-arrow"
+              />
             </div>
-            <div class="space"></div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
+            <div class="payment-info">
+              <div>
+                <strong>💵 Pago en efectivo</strong><br />
+                <span class="payment-subtext"
+                  >Confirma tu inscripción al instante</span
+                >
+              </div>
+              <img
+                src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
+                alt="→"
+                class="icon-arrow"
+              />
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
+            <div class="payment-info">
+              <div>
+                <strong>🏦 Depósito o transferencia</strong><br />
+                <span class="payment-subtext"
+                  >Validación hasta 72 h hábiles</span
+                >
+              </div>
+              <img
+                src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
+                alt="→"
+                class="icon-arrow"
+              />
+            </div>
+          </a>
         </div>
 
-        <div class="footer">
-            <p>© 2025 EVENTO PAGOS | Softec Apps S.A.S. Todos los derechos reservados.</p>
-        </div>
-
-    </main>
-</body>
-
+        <!-- <p style="margin-top:20px;">Gracias por ser parte del evento.</p> -->
+      </div>
+      <div class="footer">
+        © 2025 EVENTO PAGOS |
+        <a
+          href="https://softecsa.com"
+          target="_blank"
+          style="color: #ffffff; text-decoration: none; font-weight: bold"
+        >
+          Softec Apps
+        </a>. Todos los derechos reservados.
+      </div>
+    </div>
+  </body>
 </html>
