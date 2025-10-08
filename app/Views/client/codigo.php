@@ -88,34 +88,6 @@
       }
 
       .payment-card {
-        border: 1px solid #d9e1f0;
-        border-radius: 8px;
-        background-color: #fafafa;
-        padding: 12px 15px;
-        margin-bottom: 10px;
-        text-align: left;
-      }
-
-      .payment-card strong {
-        color: #0c244b;
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      .payment-card a.video-link {
-        color: #c3171b;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .payment-cards {
-        margin-top: 20px;
-      }
-      .payment-cards {
-        margin-top: 10px;
-      }
-
-      .payment-card {
         display: block;
         text-decoration: none;
         border: 1px solid #d9e1f0;
@@ -124,12 +96,7 @@
         padding: 15px 18px;
         margin-bottom: 10px;
         color: #0c244b;
-      }
-
-      .payment-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        text-align: left;
       }
 
       .payment-subtext {
@@ -140,6 +107,7 @@
       .icon-arrow {
         width: 14px;
         height: 14px;
+        display: block;
       }
 
       .footer {
@@ -183,7 +151,7 @@
           Has realizado tu <strong>pre-registro</strong> para el evento
           <span class="highlight-box"><?= $evento ?></span>
           en la categoría
-          <span class="highlight-box"><?= $categoria ?></span>.El monto a
+          <span class="highlight-box"><?= $categoria ?></span>. El monto a
           cancelar es
           <span class="highlight-box">$<?= number_format($precio, 2) ?></span
           ><br />
@@ -222,57 +190,77 @@
         </p>
 
         <div class="payment-cards">
+          <!-- Pago con tarjeta -->
           <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
-            <div class="payment-info">
-              <div>
-                <strong>💳 Pago con tarjeta</strong><br />
-                <span class="payment-subtext"
-                  >Confirma tu inscripción de inmediato</span
-                >
-              </div>
-              <img
-                src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
-                alt="→"
-                class="icon-arrow"
-              />
-            </div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="vertical-align: middle;">
+              <tr>
+                <td style="vertical-align: middle;">
+                  <strong>💳 Pago con tarjeta</strong><br />
+                  <span class="payment-subtext">
+                    Confirma tu inscripción de inmediato
+                  </span>
+                </td>
+                <td align="right" style="vertical-align: middle; width: 20px;">
+                  <img
+                    src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
+                    alt="→"
+                    width="14"
+                    height="14"
+                    style="display: block;"
+                  />
+                </td>
+              </tr>
+            </table>
           </a>
 
+          <!-- Pago en efectivo -->
           <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
-            <div class="payment-info">
-              <div>
-                <strong>💵 Pago en efectivo</strong><br />
-                <span class="payment-subtext"
-                  >Confirma tu inscripción al instante</span
-                >
-              </div>
-              <img
-                src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
-                alt="→"
-                class="icon-arrow"
-              />
-            </div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="vertical-align: middle;">
+              <tr>
+                <td style="vertical-align: middle;">
+                  <strong>💵 Pago en efectivo</strong><br />
+                  <span class="payment-subtext">
+                    Confirma tu inscripción al instante
+                  </span>
+                </td>
+                <td align="right" style="vertical-align: middle; width: 20px;">
+                  <img
+                    src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
+                    alt="→"
+                    width="14"
+                    height="14"
+                    style="display: block;"
+                  />
+                </td>
+              </tr>
+            </table>
           </a>
 
+          <!-- Depósito o transferencia -->
           <a href="https://www.youtube.com/watch?v=tkv-ai0Grno" class="payment-card">
-            <div class="payment-info">
-              <div>
-                <strong>🏦 Depósito o transferencia</strong><br />
-                <span class="payment-subtext"
-                  >Validación hasta 72 h hábiles</span
-                >
-              </div>
-              <img
-                src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
-                alt="→"
-                class="icon-arrow"
-              />
-            </div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="vertical-align: middle;">
+              <tr>
+                <td style="vertical-align: middle;">
+                  <strong>🏦 Depósito o transferencia</strong><br />
+                  <span class="payment-subtext">
+                    Validación hasta 72 h hábiles
+                  </span>
+                </td>
+                <td align="right" style="vertical-align: middle; width: 20px;">
+                  <img
+                    src="<?= base_url('assets/images/icons/arrow-right.png') ?>"
+                    alt="→"
+                    width="14"
+                    height="14"
+                    style="display: block;"
+                  />
+                </td>
+              </tr>
+            </table>
           </a>
         </div>
-
-        <!-- <p style="margin-top:20px;">Gracias por ser parte del evento.</p> -->
       </div>
+
       <div class="footer">
         © 2025 EVENTO PAGOS |
         <a
