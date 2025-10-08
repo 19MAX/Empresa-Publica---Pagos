@@ -9,7 +9,7 @@
         content="EventoPagos: Inscripciones y pagos de eventos culturales y académicos de diferentes autores. Regístrate fácilmente y paga en línea, depósito o en puntos autorizados.">
     <meta name="keywords"
         content="eventos, autores, inscripciones, pagos en línea, depósito, puntos de recaudación, Ecuador">
-    <link rel="icon" href="<?=base_url("")?>">
+    <link rel="icon" href="<?=base_url("favicon.ico")?>">
     <meta property="og:title" content="EventoPagos - Inscripción y Pago de Eventos de Autores">
     <meta property="og:description"
         content="Descubre eventos organizados por diferentes autores. Inscríbete y paga de forma segura con múltiples métodos de pago.">
