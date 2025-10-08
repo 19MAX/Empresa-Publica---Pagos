@@ -210,7 +210,7 @@
         <div class="payment-cards">
           <!-- Pago con tarjeta -->
           <a
-            href="https://www.youtube.com/watch?v=tkv-ai0Grno"
+            href="https://wa.me/+593989026071"
             class="payment-card"
           >
             <table
@@ -242,7 +242,7 @@
 
           <!-- Pago en efectivo -->
           <a
-            href="https://www.youtube.com/watch?v=tkv-ai0Grno"
+            href="https://wa.me/+593989026071"
             class="payment-card"
           >
             <table
@@ -274,7 +274,7 @@
 
           <!-- Depósito o transferencia -->
           <a
-            href="https://www.youtube.com/watch?v=tkv-ai0Grno"
+            href="https://wa.me/+593989026071"
             class="payment-card"
           >
             <table
