@@ -672,14 +672,13 @@ class PaymentsModel extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
-
-    public function getRecaudadoWithPermissions($userId)
+    public function getRecaudadoWithPermissions($userId, $filters = [])
     {
         $permissionService = new PermissionService();
         $allowedEvents = $permissionService->getUserAllowedEvents($userId);
 
         if (empty($allowedEvents)) {
-            return [];
+            return ['data' => [], 'recordsTotal' => 0, 'recordsFiltered' => 0];
         }
 
         // Extraer IDs de eventos permitidos
@@ -690,37 +689,126 @@ class PaymentsModel extends Model
         $additionalCharge = $configModel->where('key', 'additional_charge')->first();
         $additionalChargeValue = floatval($additionalCharge['value']);
 
-        // Construir la consulta
+        // Construir la consulta base
         $builder = $this->select('
             payments.id AS payment_id,
             (payments.amount_pay - ' . $additionalChargeValue . ') AS amount_pay,
             payments.date_time_payment,
             payments.payment_cod AS codigo,
             payments.num_autorizacion AS num_autorizacion,
+            payments.payment_status,
             registrations.full_name_user AS participante_name,
             registrations.ic AS participante_cedula,
             registrations.address AS participante_direccion,
             registrations.phone AS participante_telefono,
             registrations.email AS participante_email,
             registrations.event_name AS event_name,
+            categories.category_name AS nombre_categoria,
             events.id AS event_cod,
             authors.name AS author_name,
-            (registrations.monto_category - ' . $additionalChargeValue . ') AS precio,
+            (categories.cantidad_dinero - ' . $additionalChargeValue . ') AS precio,
             payment_methods.method_name AS method_pago
         ');
 
         $builder->join('registrations', 'payments.id_register = registrations.id');
         $builder->join('events', 'registrations.event_cod = events.id');
+        $builder->join('categories', 'registrations.cat_id = categories.id', "left");
         $builder->join('authors', 'events.author_id = authors.id');
-        $builder->join('payment_methods', 'payment_methods.id = payments.payment_method_id');
+        $builder->join('payment_methods', 'payment_methods.id = payments.payment_method_id', 'left');
 
         // Filtrar solo por eventos permitidos
         $builder->whereIn('events.id', $allowedEventIds);
-        $builder->where('payments.payment_status', 2);
-        $builder->orderBy('payments.date_time_payment', 'DESC');
 
-        return $builder->get()->getResultArray();
+        // Filtrar por pagos Completados o Pendientes
+        $builder->whereIn('payments.payment_status', [
+            PaymentStatus::Completado,
+            PaymentStatus::Pendiente
+        ]);
+
+        // Aplicar filtros adicionales
+        if (!empty($filters['event_id'])) {
+            $builder->where('events.id', $filters['event_id']);
+        }
+
+        if (!empty($filters['category_id'])) {
+            $builder->where('registrations.cat_id', $filters['category_id']);
+        }
+
+        if (!empty($filters['payment_status'])) {
+            $builder->where('payments.payment_status', $filters['payment_status']);
+        }
+
+        // Búsqueda general (para el search de DataTables)
+        if (!empty($filters['search'])) {
+            $searchValue = $filters['search'];
+            $builder->groupStart()
+                ->like('registrations.full_name_user', $searchValue)
+                ->orLike('registrations.ic', $searchValue)
+                ->orLike('registrations.email', $searchValue)
+                ->orLike('events.event_name', $searchValue)
+                ->orLike('payments.payment_cod', $searchValue)
+                ->orLike('registrations.monto_category', $searchValue)
+                ->groupEnd();
+        }
+
+        // Contar registros filtrados
+        $recordsFiltered = $builder->countAllResults(false);
+
+        // Ordenamiento
+        if (!empty($filters['order_column']) && !empty($filters['order_dir'])) {
+            $builder->orderBy($filters['order_column'], $filters['order_dir']);
+        } else {
+            $builder->orderBy('payments.date_time_payment', 'DESC');
+        }
+
+        // Paginación
+        if (isset($filters['start']) && isset($filters['length'])) {
+            $start = is_numeric($filters['start']) ? (int) $filters['start'] : 0;
+            $length = is_numeric($filters['length']) ? (int) $filters['length'] : 10;
+            $builder->limit($length, $start);
+        }
+
+        $data = $builder->get()->getResultArray();
+
+        // Contar registros totales (sin filtros)
+        $builderTotal = $this->select('payments.id')
+            ->join('registrations', 'payments.id_register = registrations.id')
+            ->join('events', 'registrations.event_cod = events.id')
+            ->whereIn('events.id', $allowedEventIds)
+            ->whereIn('payments.payment_status', [
+                PaymentStatus::Completado,
+                PaymentStatus::Pendiente
+            ]);
+
+        $recordsTotal = $builderTotal->countAllResults();
+
+        return [
+            'data' => $data,
+            'recordsTotal' => $recordsTotal,
+            'recordsFiltered' => $recordsFiltered
+        ];
     }
+
+    // Método adicional para obtener categorías de un evento
+    public function getCategoriesByEventId($eventId)
+    {
+        $configModel = new ConfigModel();
+        $additionalCharge = $configModel->where('key', 'additional_charge')->first();
+        $additionalChargeValue = floatval($additionalCharge['value']);
+
+        $builder = $this->db->table('categories');
+        $builder->select('
+            categories.id,
+            categories.category_name,
+            (categories.cantidad_dinero - ' . $additionalChargeValue . ') AS cantidad_dinero
+        ');
+        $builder->join('event_category', 'event_category.cat_id = categories.id', 'left');
+        $builder->where('event_category.event_id', $eventId);
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
+
 
     public function getRecaudadoWithEvent($userId)
     {
@@ -728,7 +816,7 @@ class PaymentsModel extends Model
         $allowedEvents = $permissionService->getUserEvents($userId);
 
 
-        $id_event=$allowedEvents[0]['id'];
+        $id_event = $allowedEvents[0]['id'];
 
         // Obtener el valor de 'additional_charge'
         $configModel = new ConfigModel();

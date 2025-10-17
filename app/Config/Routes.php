@@ -102,7 +102,7 @@ $routes->group('admin', static function ($routes) {
         $inscritos->post('restore', 'Admin\RegistrationsController::restore');
         $inscritos->post('deleteAll', 'Admin\RegistrationsController::deleteAll');
     });
-    $routes->group('recaudaciones', static function ($recaudaciones){
+    $routes->group('recaudaciones', static function ($recaudaciones) {
         $recaudaciones->get('/', 'Admin\UsersController::recaudaciones');
         $recaudaciones->get('online', 'Admin\UsersController::online');
         $recaudaciones->get('usuarios', 'Admin\UsersController::all_recaudaciones');
@@ -141,7 +141,7 @@ $routes->group('punto/pago', static function ($routes) {
         $depositos->post('recoverPassword', 'Payments\UserController::recoverPassword');
     });
 
-    $routes->group('recaudaciones', static function ($recaudaciones){
+    $routes->group('recaudaciones', static function ($recaudaciones) {
         $recaudaciones->get('/', 'Payments\UserController::recaudaciones');
     });
 
@@ -157,9 +157,10 @@ $routes->group('punto/pago', static function ($routes) {
 });
 
 // PROSERVI
-$routes->group('proservi',  ['filter' => 'AuthorPermission'], static function ($routes) {
-
+$routes->group('proservi', ['filter' => 'AuthorPermission'], static function ($routes) {
     $routes->get('reportes', 'Proservi\ReportesController::index');
+    $routes->post('reportes/ajax', 'Proservi\ReportesController::getPaymentsDataAjax');
+    $routes->post('reportes/categories', 'Proservi\ReportesController::getCategoriesByEvent');
 
     $routes->group('users', static function ($categories) {
         $categories->get('/', 'Proservi\UsersController::index');
@@ -167,9 +168,7 @@ $routes->group('proservi',  ['filter' => 'AuthorPermission'], static function ($
         $categories->post('update', 'Proservi\UsersController::update');
         $categories->post('delete', 'Proservi\UsersController::delete');
         $categories->post('recover', 'Proservi\UsersController::recover');
-
     });
-
 });
 
 $routes->group('user-event', static function ($routes) {
@@ -188,7 +187,7 @@ $routes->get('completado/(:num)/(:segment)', 'Payphone\PayphoneController::compl
 //Client
 $routes->get('/', 'Client\ClientController::authors');
 $routes->get('authors', 'Client\ClientController::authors');
-$routes->post('validar_cedula', 'Client\InscripcionController::validarCedula',['filter' => 'csrf']);
+$routes->post('validar_cedula', 'Client\InscripcionController::validarCedula', ['filter' => 'csrf']);
 $routes->post('obtener_datos_evento', 'Client\InscripcionController::obtenerDatosEvento');
 $routes->post('guardar_inscripcion', 'Client\InscripcionController::guardarInscripcion');
 $routes->post('registrar_usuario', 'Client\InscripcionController::registrarUsuario', ['filter' => 'antibot']);
