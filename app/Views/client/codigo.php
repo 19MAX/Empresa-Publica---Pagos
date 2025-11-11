@@ -27,7 +27,6 @@
         color: white;
         text-align: center;
         padding: 25px 15px;
-        border: none;
       }
 
       .header img {
@@ -90,37 +89,41 @@
         text-decoration: none;
         border-radius: 6px;
         font-weight: bold;
-        margin: 15px auto 0 auto; /* Centramos y separamos de los bordes */
+        margin: 15px auto 0 auto;
         text-align: center;
         font-size: 0.8rem;
-        max-width: 90%; /* Evita que toque los bordes del contenedor */
+        max-width: 90%;
       }
 
-      .payment-cards {
-        margin-top: 20px;
+      /* ====== ESTILO DE TABLA ====== */
+      .bank-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 0.95rem;
       }
 
-      .payment-card {
-        display: block;
-        text-decoration: none;
-        border: 1px solid #d9e1f0;
-        border-radius: 10px;
-        background-color: #ffffff;
-        padding: 15px 18px;
-        margin-bottom: 10px;
-        color: #0c244b;
+      .bank-table th,
+      .bank-table td {
         text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid #e0e6f2;
       }
 
-      .payment-subtext {
-        font-size: 0.9rem;
-        color: #555;
+      .bank-table th {
+        width: 40%;
+        background-color: #f8f9ff;
+        color: #0c244b;
       }
 
-      .icon-arrow {
-        width: 14px;
-        height: 14px;
-        display: block;
+      .bank-table tr:nth-child(1) th {
+        background-color: #ffdd00;
+        color: #000;
+        font-weight: bold;
+      }
+
+      .bank-table tr:hover {
+        background-color: #f3f6ff;
       }
 
       .footer {
@@ -129,7 +132,6 @@
         text-align: center;
         padding: 15px;
         font-size: 0.85rem;
-        border: none;
       }
 
       @media (max-width: 600px) {
@@ -139,7 +141,6 @@
         .btn {
           display: block;
           width: 100%;
-          text-align: center;
         }
       }
     </style>
@@ -148,67 +149,78 @@
   <body>
     <div class="container">
       <div class="header">
-        <img
-          src="<?= base_url('assets/images/email/logo-ep.png') ?>"
-          alt="Logo"
-        />
+        <img src="<?= base_url('assets/images/email/logo-ep.png') ?>" alt="Logo" />
         <h1>Pre-registro confirmado</h1>
       </div>
 
       <div class="content">
-        <p style="text-align: left">
-          Hola <strong><?= $user ?></strong>,
-        </p>
+        <p style="text-align: left">Hola <strong><?= $user ?></strong>,</p>
 
         <p style="text-align: left">
           Has realizado tu <strong>pre-registro</strong> para el evento
-          <span class="highlight-box"><?= $evento ?></span>
-          en la categoría
-          <span class="highlight-box"><?= $categoria ?></span><br />El monto a
-          cancelar es
+          <span class="highlight-box"><?= $evento ?></span> en la categoría
+          <span class="highlight-box"><?= $categoria ?></span><br />
+          El monto a cancelar es
           <span class="highlight-box">$<?= number_format($precio, 2) ?></span>
         </p>
 
         Tu código de pago es
         <span class="highlight-box"><?= $codigoPago ?></span>
+
         <div class="alert">
           Tu inscripción se completará cuando realices el pago.<br />
           Tienes 48 horas para hacerlo.
         </div>
 
-        <div>
-          <a
-            href="<?= base_url('?modal=metodo&codigoPago=' . $codigoPago) ?>"
-            class="btn"
-          >
-            COMPLETAR INSCRIPCIÓN
-          </a>
-        </div>
+        <h3 style="text-align: left; color: #0c244b; margin-top: 25px">
+          💳 Puedes realizar el pago en la siguiente cuenta:
+        </h3>
+
+        <table class="bank-table">
+          <tbody>
+            <tr>
+              <th scope="row">Banco</th>
+              <td>Banco de Pichincha</td>
+            </tr>
+            <tr>
+              <th scope="row">Tipo de Cuenta</th>
+              <td>Corriente</td>
+            </tr>
+            <tr>
+              <th scope="row">Nombre</th>
+              <td>EMPRESA PUBLICA PROSERVI UEB EP</td>
+            </tr>
+            <tr>
+              <th scope="row">Cuenta Bancaria</th>
+              <td>2100238825</td>
+            </tr>
+            <tr>
+              <th scope="row">RUC</th>
+              <td>0260024190001</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a
+          href="<?= base_url('?modal=metodo&codigoPago=' . $codigoPago) ?>"
+          class="btn"
+        >
+          COMPLETAR INSCRIPCIÓN
+        </a>
 
         <div class="alert-success">
           Te recomendamos pagar con <strong>tarjeta</strong> o en
           <strong>puntos físicos</strong> para que tu inscripción se confirme de
           inmediato.
         </div>
-
-        <!-- <p
-          style="
-            text-align: left;
-            color: #555;
-            font-size: 0.95rem;
-            margin: 0 0 15px;
-          "
-        >
-          Te recomendamos pagar con <strong>tarjeta</strong> o en
-          <strong>puntos físicos</strong> para que tu inscripción se confirme de
-          inmediato.
-        </p> -->
-        <h3 style="text-align: left; color: #0c244b; margin-bottom: 8px">
+<!-- 
+        <h3 style="text-align: left; color: #0c244b; margin-top: 25px">
           ¿Cómo pagar?
-        </h3>
+        </h3> -->
+      </div>
 
-        <div class="payment-cards">
-          <!-- Pago con tarjeta -->
+
+        <!-- <div class="payment-cards">
           <a
             href="https://wa.me/+593989026071"
             class="payment-card"
@@ -240,7 +252,6 @@
             </table>
           </a>
 
-          <!-- Pago en efectivo -->
           <a
             href="https://wa.me/+593989026071"
             class="payment-card"
@@ -272,7 +283,6 @@
             </table>
           </a>
 
-          <!-- Depósito o transferencia -->
           <a
             href="https://wa.me/+593989026071"
             class="payment-card"
@@ -303,18 +313,18 @@
               </tr>
             </table>
           </a>
-        </div>
-      </div>
+        </div> -->
 
       <div class="footer">
-        © 2025 PROSERVI UEB-EP|
+        © 2025 PROSERVI UEB-EP |
         <a
           href="https://softecsa.com"
           target="_blank"
           style="color: #ffffff; text-decoration: none; font-weight: bold"
         >
-          Softec Apps </a
-        >. Todos los derechos reservados.
+          Softec Apps
+        </a>
+        . Todos los derechos reservados.
       </div>
     </div>
   </body>
