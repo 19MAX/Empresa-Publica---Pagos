@@ -434,7 +434,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Nombre</th>
-                                            <td>SOFTEC WEBSTORE S.A.S</td>
+                                            <td>EMPRESA PUBLICA PROSERVI UEB EP</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Cuenta Bancaria</th>
