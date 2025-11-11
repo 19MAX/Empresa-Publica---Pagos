@@ -424,9 +424,9 @@
                             <div class="table-responsive text-start">
                                 <table class="table table-striped table-hover">
                                     <tbody>
-                                        <tr style="background:#BC157C;">
+                                        <tr style="background:#ffdd00;">
                                             <th class="text-white" scope="row">Banco</th>
-                                            <td class="text-white">Banco de Guayaquil</td>
+                                            <td class="text-white">Banco de Pichincha</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Tipo de Cuenta</th>
@@ -438,11 +438,11 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Cuenta Bancaria</th>
-                                            <td>0029421609</td>
+                                            <td>2100238825</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">RUC</th>
-                                            <td>0291525784001</td>
+                                            <td>0260024190001</td>
                                         </tr>
                                     </tbody>
                                 </table>
