@@ -829,12 +829,12 @@
         <img loading="lazy" src="" alt="Imagen ampliada">
     </div>
 
-    <a href="https://wa.me/+593993847289?text=Hola%2C%20necesito%20ayuda%20con%20el%20evento%20X" class="Btn text-decoration-none" target="_blank" title="¿Necesitas ayuda?">
+    <!-- <a href="https://wa.me/+593993847289?text=Hola%2C%20necesito%20ayuda%20con%20el%20evento%20X" class="Btn text-decoration-none" target="_blank" title="¿Necesitas ayuda?">
         <div class="sign">
             <i class="fa-brands fa-whatsapp"></i>
         </div>
         <div class="text">Soporte</div>
-    </a>
+    </a> -->
 
     <!-- Footer-->
     <footer class="bg-dark text-light py-4 mt-auto">
