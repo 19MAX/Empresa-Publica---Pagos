@@ -307,7 +307,7 @@
       </div>
 
       <div class="footer">
-        © 2025 EVENTO PAGOS |
+        © 2025 PROSERVI UEB-EP|
         <a
           href="https://softecsa.com"
           target="_blank"

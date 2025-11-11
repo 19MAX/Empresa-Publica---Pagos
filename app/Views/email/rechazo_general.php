@@ -383,7 +383,7 @@
 														<tr>
 															<td class="pad">
 																<div style="color:#FFFFFF;font-family:Tahoma, Verdana, Segoe, sans-serif;font-size:14px;font-weight:400;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
-																	<p style="margin: 0;">© 2025 EVENTO PAGOS | Softec Apps S.A.S. Todos los derechos reservados.</p>
+																	<p style="margin: 0;">© 2025 PROSERVI UEB-EP| Softec Apps S.A.S. Todos los derechos reservados.</p>
 																</div>
 															</td>
 														</tr>
