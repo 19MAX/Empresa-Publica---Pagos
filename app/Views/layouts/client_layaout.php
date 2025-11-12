@@ -46,7 +46,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
         <div class="container-fluid">
             <a class="navbar-brand ms-lg-4" href="<?= base_url('/') ?>">
-                <h4>PROSERVI UEB-EP </h4>
+                <!-- <h4>PROSERVI UEB-EP </h4> -->
+
+                <img loading="lazy" class="img-fluid" width="90px" src="<?= base_url("assets/images/logo-ep.png") ?>"
+                    alt="EventoPagos">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +90,7 @@
     <footer class="bg-dark text-light py-4 mt-auto">
         <div class="container-fluid text-center">
             <div class="small m-0 text-white p-1">Copyright 2025 &copy; PROSERVI UEB-EP|
-                <a href="" class="text-decoration-none link-light">Softec Apps S.A.S</a>
+                <a href="https://softecsa.com/" class="text-decoration-none link-light">Softec Apps S.A.S</a>
             </div>
         </div>
     </footer>
