@@ -63,7 +63,7 @@
 
 <body>
     <header>
-        <div class="title">EVENTO PAGOS</div>
+        <div class="title">PROSERVI UEB</div>
         <div class="title">COMPROBANTE DE RECAUDACIÓN</div>
         <div>Calle Sucre entre García Moreno y 10 de Agosto</div>
         <div>RUC: 0260024190001</div>
