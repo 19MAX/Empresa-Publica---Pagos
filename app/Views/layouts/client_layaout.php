@@ -49,7 +49,7 @@
                 <!-- <h4>PROSERVI UEB-EP </h4> -->
 
                 <img loading="lazy" class="img-fluid" width="90px" src="<?= base_url("assets/images/logo-ep.png") ?>"
-                    alt="EventoPagos">
+                    alt="Empresa Publica Universidad Estatal de Bolivar">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
