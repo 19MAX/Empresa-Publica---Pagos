@@ -6,7 +6,7 @@ Error de pago
 
 <?= $this->section('content') ?>
 
-<main class="flex-grow-1">
+<main class="flex-grow-1" style="background-color: #f5f7fa;">
 
     <div class="mb-4">
         <section class="container flex-grow-1 d-flex">
