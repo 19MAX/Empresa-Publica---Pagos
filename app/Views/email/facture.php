@@ -65,8 +65,8 @@
     <header>
         <div class="title">EVENTO PAGOS</div>
         <div class="title">COMPROBANTE DE RECAUDACIÓN</div>
-        <div>7 de Mayo y Olmedo</div>
-        <div>RUC: 0201975844001</div>
+        <div>Calle Sucre entre García Moreno y 10 de Agosto</div>
+        <div>RUC: 0260024190001</div>
         <!-- <div>Factura Nro: 002-201-000000977</div> -->
         <div>Fecha autorización: <?= $fecha_emision ?></div>
         <div>Ambiente: PRODUCCIÓN</div>
