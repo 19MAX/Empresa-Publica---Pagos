@@ -35,7 +35,7 @@
     </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100" style="background-color:#d9d9d9;">
+<body class="d-flex flex-column min-vh-100" >
 
     <!-- Preloader HTML -->
     <div id="preloader" style="display: none;">

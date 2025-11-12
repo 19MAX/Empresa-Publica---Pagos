@@ -60,7 +60,7 @@
             color: #888;
         }
     </style>
-    <main class="flex-grow-1" style="background-color: #d9d9d9;">
+    <main class="flex-grow-1">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
             <div class="container-fluid">
                 <a class="navbar-brand ms-lg-4" href="">
