@@ -115,8 +115,8 @@
                                 <table class="table table-striped table-hover">
                                     <tbody>
                                         <tr style="background:#FFD700;">
-                                            <th class="text-white" scope="row">Banco</th>
-                                            <td class="text-white">Banco de Pichincha</td>
+                                            <th scope="row">Banco</th>
+                                            <td>Banco de Pichincha</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Tipo de Cuenta</th>
