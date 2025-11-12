@@ -64,7 +64,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
             <div class="container-fluid">
                 <a class="navbar-brand ms-lg-4" href="">
-                    <!-- <h4>EVENTO PAGOS</h4> -->
+                    <!-- <h4>PROSERVI UEB-EP </h4> -->
                     <img loading="lazy" class="img-fluid" width="90px" src="<?= base_url("assets/images/logo-ep.png") ?>"
                         alt="EventoPagos">
                 </a> 
@@ -365,9 +365,9 @@
                             <div class="table-responsive text-start">
                                 <table class="table table-striped table-hover">
                                     <tbody>
-                                        <tr style="background:#BC157C;">
-                                            <th class="text-white" scope="row">Banco</th>
-                                            <td class="text-white">Banco de Guayaquil</td>
+                                        <tr style="background:#FFD700;">
+                                            <th class="text" scope="row">Banco</th>
+                                            <td class="text">Banco de Pichincha</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Tipo de Cuenta</th>
@@ -375,15 +375,15 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Nombre</th>
-                                            <td>SOFTEC WEBSTORE S.A.S</td>
+                                            <td>EMPRESA PUBLICA PROSERVI UEB EP</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Cuenta Bancaria</th>
-                                            <td>0029421609</td>
+                                            <td>2100238825</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">RUC</th>
-                                            <td>0291525784001</td>
+                                            <td>0260024190001</td>
                                         </tr>
                                     </tbody>
                                 </table>

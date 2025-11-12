@@ -70,7 +70,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0C244B;">
             <div class="container-fluid">
                 <a class="navbar-brand ms-lg-4" href="">
-                    <!-- <h4>EVENTO PAGOS</h4> -->
+                    <!-- <h4>PROSERVI UEB-EP </h4> -->
                     <img loading="lazy" class="img-fluid" width="90px"
                         src="<?= base_url("assets/images/logo-ep.png") ?>" alt="EventoPagos">
                 </a>

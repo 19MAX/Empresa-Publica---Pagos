@@ -241,7 +241,7 @@
                     <table class="details-table">
                         <tr>
                             <th>Banco:</th>
-                            <td style="background:#BC157C; color:white;">Banco de Guayaquil</td>
+                            <td style="background:#BC157C; color:white;">Banco de Pichincha</td>
                         </tr>
                         <tr>
                             <th>Tipo de Cuenta:</th>
@@ -249,15 +249,15 @@
                         </tr>
                         <tr>
                             <th>Nombre:</th>
-                            <td>SOFTEC WEBSTORE S.A.S</td>
+                            <td>EMPRESA PUBLICA PROSERVI UEB EP</td>
                         </tr>
                         <tr>
                             <th>Cuenta Bancaria:</th>
-                            <td>0029421609</td>
+                            <td>2100238825</td>
                         </tr>
                         <tr>
                             <th>RUC:</th>
-                            <td>0291525784001</td>
+                            <td>0260024190001</td>
                         </tr>
                         <!-- <tr>
                             <td colspan="2" style="text-align: center; font-weight: bold; padding-top: 15px;">Otra cuenta</td>
